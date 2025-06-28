@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://bi4ay2nf1nk22"]
+
+[ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/NightBorne.png" id="1_6jhk5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4puj"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ejd6"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afucq"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x30qq"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ari"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwhlh"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_517xq"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc0tx"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c3xo"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(640, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wbmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4puj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ejd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afucq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x30qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0ari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwhlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_517xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc0tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c3xo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwrx"]
+
+[node name="Nightborne" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_7wbmw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -14)
+shape = SubResource("RectangleShape2D_6dwrx")
