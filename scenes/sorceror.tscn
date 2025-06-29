@@ -7,6 +7,7 @@
 [node name="Sorceror" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_fgudy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
