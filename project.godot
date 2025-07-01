@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Hell Shall Fear My Summons"
 run/main_scene="uid://5oibnel7g1ro"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]

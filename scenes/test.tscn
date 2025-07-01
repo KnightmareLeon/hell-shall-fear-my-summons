@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://belrkeik2afw4"]
+
+[ext_resource type="PackedScene" uid="uid://bi4ay2nf1nk22" path="res://scenes/nightborne.tscn" id="1_errlg"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Nightborne" parent="." instance=ExtResource("1_errlg")]
+position = Vector2(541, 303)

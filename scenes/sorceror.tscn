@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbduviv1u24p0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgudy"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_mbnio"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgudy"]
+
 [node name="Sorceror" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mbnio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_fgudy")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_mbnio")
