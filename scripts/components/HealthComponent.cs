@@ -1,35 +1,46 @@
-namespace Godot.Game.HSFMS.Component;
+using Godot.Game.HSFMS.Types;
+
+namespace Godot.Game.HSFMS.Components;
 
 [GlobalClass]
-public partial class HealthComponent : Node2D
+public partial class HealthComponent : Component
 {
 
     [Export]
     private int _maxHealth = 100;
     [Export]
-    private int health = 100;
+    private int _health = 100;
     public int Health
     {
-        get { return health; }
+        get { return _health; }
         set
         {
             if (value < 0)
             {
-                health = 0;
+                _health = 0;
             }
             if (value > _maxHealth)
             {
-                health = _maxHealth;
+                _health = _maxHealth;
             }
         }
     }
 
+    [Export]
+    private DefenseComponent _defenseComponent;
+
     [Signal]
     public delegate void ZeroHealthEventHandler();
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, DamageType damageType, int pierce = 0)
     {
+        if (_defenseComponent != null)
+        {
+            damage = _defenseComponent.ReduceDamage(damage, damageType, pierce);
+        }
+
         Health -= damage;
+
         if (Health == 0)
         {
             EmitSignal(nameof(ZeroHealthEventHandler));

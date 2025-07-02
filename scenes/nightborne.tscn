@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bi4ay2nf1nk22"]
+[gd_scene load_steps=18 format=3 uid="uid://bi4ay2nf1nk22"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
 [ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_x30qq"]
 [ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="3_afucq"]
+[ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
 [ext_resource type="Script" uid="uid://cayfuk1upofne" path="res://scripts/nightborne/states/Idle.cs" id="4_x30qq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4puj"]
@@ -74,7 +75,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 20.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwrx"]
@@ -83,18 +84,26 @@ animations = [{
 script = ExtResource("1_n4puj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_7wbmw")
 animation = &"idle"
+frame_progress = 0.81336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -14)
+position = Vector2(1, 9)
 shape = SubResource("RectangleShape2D_6dwrx")
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("_defenseComponent")]
 position = Vector2(0, -22)
 script = ExtResource("2_x30qq")
+_maxHealth = 200
+_health = 200
+_defenseComponent = NodePath("../DefenseComponent")
 metadata/_custom_type_script = "uid://m1ioxryjx4h7"
+
+[node name="DefenseComponent" type="Node2D" parent="."]
+position = Vector2(0, -22)
+script = ExtResource("4_i0ari")
+metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_afucq")
