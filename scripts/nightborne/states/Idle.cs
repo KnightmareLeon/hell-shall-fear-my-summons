@@ -1,14 +1,14 @@
-namespace Godot.Game.HSFMS;
+namespace Godot.Game.HSFMS.Nightborne;
 
 public partial class Idle : NightborneState
 {
     [Export]
-    private AnimatedSprite2D animatedSprite2D;
+    private AnimatedSprite2D _animatedSprite2D;
 
     public override void Enter()
     {
         base.Enter();
-        animatedSprite2D.Play("idle");
+        _animatedSprite2D.Play("idle");
     }
 
 }

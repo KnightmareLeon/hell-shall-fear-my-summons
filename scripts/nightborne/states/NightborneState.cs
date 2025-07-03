@@ -1,4 +1,4 @@
-namespace Godot.Game.HSFMS;
+namespace Godot.Game.HSFMS.Nightborne;
 
 [GlobalClass]
 public partial class NightborneState : State

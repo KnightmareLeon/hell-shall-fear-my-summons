@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8lb27p605010"]
+
+[ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
+[ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="2_qxgmm"]
+[ext_resource type="Script" uid="uid://bwtipc1nushen" path="res://scripts/knight/states/Idle.cs" id="3_0dyjn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i0j8"]
+atlas = ExtResource("1_dp28g")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxgmm"]
+atlas = ExtResource("1_dp28g")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dyjn"]
+atlas = ExtResource("1_dp28g")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fsgc"]
+atlas = ExtResource("1_dp28g")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swm0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i0j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxgmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dyjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fsgc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2txo"]
+size = Vector2(20, 55)
+
+[node name="Knight" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_swm0g")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_k2txo")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("2_qxgmm")
+InitialState = NodePath("Idle")
+metadata/_custom_type_script = "uid://35uhe5dkikeb"
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("_animatedSprited2D")]
+script = ExtResource("3_0dyjn")
+_animatedSprited2D = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://d02hp476jpg6b"

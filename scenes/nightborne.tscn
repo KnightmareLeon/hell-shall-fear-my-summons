@@ -1,63 +1,51 @@
 [gd_scene load_steps=18 format=3 uid="uid://bi4ay2nf1nk22"]
 
-[ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/NightBorne.png" id="1_6jhk5"]
+[ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
 [ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_x30qq"]
 [ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="3_afucq"]
 [ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
 [ext_resource type="Script" uid="uid://cayfuk1upofne" path="res://scripts/nightborne/states/Idle.cs" id="4_x30qq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4puj"]
-atlas = ExtResource("1_6jhk5")
-region = Rect2(0, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ejd6"]
-atlas = ExtResource("1_6jhk5")
-region = Rect2(80, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_afucq"]
-atlas = ExtResource("1_6jhk5")
-region = Rect2(160, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x30qq"]
-atlas = ExtResource("1_6jhk5")
-region = Rect2(240, 0, 80, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0ari"]
 atlas = ExtResource("1_6jhk5")
-region = Rect2(320, 0, 80, 80)
+region = Rect2(4, 13, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwhlh"]
 atlas = ExtResource("1_6jhk5")
-region = Rect2(400, 0, 80, 80)
+region = Rect2(84, 13, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_517xq"]
 atlas = ExtResource("1_6jhk5")
-region = Rect2(480, 0, 80, 80)
+region = Rect2(164, 13, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gc0tx"]
 atlas = ExtResource("1_6jhk5")
-region = Rect2(560, 0, 80, 80)
+region = Rect2(244, 13, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c3xo"]
 atlas = ExtResource("1_6jhk5")
-region = Rect2(640, 0, 80, 80)
+region = Rect2(324, 13, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wbmw"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(404, 13, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dwrx"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(484, 13, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpm0x"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(564, 13, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u328w"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(644, 13, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wbmw"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n4puj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ejd6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_afucq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x30qq")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i0ari")
 }, {
@@ -72,6 +60,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2c3xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wbmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dwrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpm0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u328w")
 }],
 "loop": true,
 "name": &"idle",
@@ -79,6 +79,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwrx"]
+size = Vector2(22, 24)
 
 [node name="Nightborne" type="CharacterBody2D"]
 script = ExtResource("1_n4puj")
@@ -89,19 +90,17 @@ animation = &"idle"
 frame_progress = 0.81336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 9)
+position = Vector2(6, 4)
 shape = SubResource("RectangleShape2D_6dwrx")
 
-[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("_defenseComponent")]
-position = Vector2(0, -22)
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
 script = ExtResource("2_x30qq")
 _maxHealth = 200
 _health = 200
 _defenseComponent = NodePath("../DefenseComponent")
 metadata/_custom_type_script = "uid://m1ioxryjx4h7"
 
-[node name="DefenseComponent" type="Node2D" parent="."]
-position = Vector2(0, -22)
+[node name="DefenseComponent" type="Node" parent="."]
 script = ExtResource("4_i0ari")
 metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
@@ -110,7 +109,7 @@ script = ExtResource("3_afucq")
 InitialState = NodePath("Idle")
 metadata/_custom_type_script = "uid://35uhe5dkikeb"
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animatedSprite2D")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("4_x30qq")
-animatedSprite2D = NodePath("../../AnimatedSprite2D")
+_animatedSprite2D = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://d02hp476jpg6b"

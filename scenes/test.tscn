@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://belrkeik2afw4"]
+[gd_scene load_steps=3 format=3 uid="uid://belrkeik2afw4"]
 
 [ext_resource type="PackedScene" uid="uid://bi4ay2nf1nk22" path="res://scenes/nightborne.tscn" id="1_errlg"]
+[ext_resource type="PackedScene" uid="uid://b8lb27p605010" path="res://scenes/knight.tscn" id="2_bl13t"]
 
 [node name="Test" type="Node2D"]
 
 [node name="Nightborne" parent="." instance=ExtResource("1_errlg")]
-position = Vector2(541, 303)
+position = Vector2(533, 299)
+scale = Vector2(2, 2)
+
+[node name="Knight" parent="." instance=ExtResource("2_bl13t")]
+position = Vector2(465, 305)
