@@ -1,5 +1,3 @@
-using System;
-
 namespace Godot.Game.HSFMS;
 
 public partial class Idle : State

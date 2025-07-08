@@ -6,8 +6,8 @@
 [node name="Test" type="Node2D"]
 
 [node name="Nightborne" parent="." instance=ExtResource("1_errlg")]
-position = Vector2(533, 299)
-scale = Vector2(2, 2)
+position = Vector2(533, 309)
+scale = Vector2(1.5, 1.5)
 
 [node name="Knight" parent="." instance=ExtResource("2_bl13t")]
 position = Vector2(465, 305)

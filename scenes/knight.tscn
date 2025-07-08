@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8lb27p605010"]
+[gd_scene load_steps=13 format=3 uid="uid://b8lb27p605010"]
 
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
+[ext_resource type="Script" uid="uid://cmu7eylfccg5u" path="res://scripts/components/ClickableComponent.cs" id="2_0dyjn"]
 [ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="2_qxgmm"]
+[ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_swm0g"]
 [ext_resource type="Script" uid="uid://bwtipc1nushen" path="res://scripts/knight/states/Idle.cs" id="3_0dyjn"]
+[ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="3_k2txo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3i0j8"]
 atlas = ExtResource("1_dp28g")
@@ -52,6 +55,23 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_k2txo")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
+script = ExtResource("2_swm0g")
+_maxHealth = 150
+_health = 150
+_defenseComponent = NodePath("../DefenseComponent")
+metadata/_custom_type_script = "uid://m1ioxryjx4h7"
+
+[node name="DefenseComponent" type="Node" parent="."]
+script = ExtResource("3_k2txo")
+PhysicalDefense = 4
+MagicalResistance = 2
+metadata/_custom_type_script = "uid://wuvakcb21x4c"
+
+[node name="ClickableComponent" type="Node" parent="."]
+script = ExtResource("2_0dyjn")
+metadata/_custom_type_script = "uid://cmu7eylfccg5u"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("2_qxgmm")

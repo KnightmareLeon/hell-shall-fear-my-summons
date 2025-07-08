@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bi4ay2nf1nk22"]
+[gd_scene load_steps=19 format=3 uid="uid://bi4ay2nf1nk22"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="3_afucq"]
 [ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
 [ext_resource type="Script" uid="uid://cayfuk1upofne" path="res://scripts/nightborne/states/Idle.cs" id="4_x30qq"]
+[ext_resource type="Script" uid="uid://cmu7eylfccg5u" path="res://scripts/components/ClickableComponent.cs" id="5_dwhlh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0ari"]
 atlas = ExtResource("1_6jhk5")
@@ -85,12 +86,12 @@ size = Vector2(22, 24)
 script = ExtResource("1_n4puj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, -5)
 sprite_frames = SubResource("SpriteFrames_7wbmw")
 animation = &"idle"
 frame_progress = 0.81336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, 4)
 shape = SubResource("RectangleShape2D_6dwrx")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
@@ -102,7 +103,13 @@ metadata/_custom_type_script = "uid://m1ioxryjx4h7"
 
 [node name="DefenseComponent" type="Node" parent="."]
 script = ExtResource("4_i0ari")
+PhysicalDefense = 3
+MagicalResistance = 5
 metadata/_custom_type_script = "uid://wuvakcb21x4c"
+
+[node name="ClickableComponent" type="Node" parent="."]
+script = ExtResource("5_dwhlh")
+metadata/_custom_type_script = "uid://cmu7eylfccg5u"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_afucq")
