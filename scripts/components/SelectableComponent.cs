@@ -1,9 +1,11 @@
 namespace Godot.Game.HSFMS.Components;
 
 [GlobalClass]
-public partial class ClickableComponent : Component
+public partial class SelectableComponent : Component
 {
     private CharacterBody2D _characterBody2D;
+    [Signal]
+    public delegate void SendSelectedCharacterEventHandler(CharacterBody2D character);
     public override void _Ready()
     {
         if (GetParent() is CharacterBody2D cb2d)
@@ -21,6 +23,7 @@ public partial class ClickableComponent : Component
             if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
             {
                 GD.Print(_characterBody2D.Name + " clicked!");
+                EmitSignal(nameof(SendSelectedCharacter), _characterBody2D);
             }
         }
     }

@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://belrkeik2afw4"]
+[gd_scene load_steps=9 format=4 uid="uid://belrkeik2afw4"]
 
 [ext_resource type="PackedScene" uid="uid://bi4ay2nf1nk22" path="res://scenes/nightborne.tscn" id="1_errlg"]
 [ext_resource type="Texture2D" uid="uid://crt12k0ddgatl" path="res://assets/tilesets/TileSet1.png" id="1_iyx0m"]
 [ext_resource type="Script" uid="uid://cjaw6j1gd8ty3" path="res://scripts/MovableCellHandler.cs" id="2_74lek"]
 [ext_resource type="PackedScene" uid="uid://b8lb27p605010" path="res://scenes/knight.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://c7o2trky3fucx" path="res://scenes/game_manager.tscn" id="2_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://dwr7q2pqc3ep" path="res://scenes/action_bar.tscn" id="5_j5jx5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_74lek"]
 texture = ExtResource("1_iyx0m")
@@ -1483,16 +1485,28 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAKAAcAAAAbABsAAAALAAcAAAAaABsAAAAKAAgAAAAaABsAAAALAAgAAAAbABsAAAAMAAkAAAAbABsAAAAKAAkAAAAbABsAAAAMAAcAAAAbABsAAAANAAgAAAAbABsAAAAOAAkAAAAbABsAAAAOAAcAAAAbABsAAAAPAAgAAAAbABsAAAAQAAkAAAAbABsAAAAQAAcAAAAbABsAAAARAAgAAAAbABsAAAALAAoAAAAbABsAAAANAAoAAAAbABsAAAAPAAoAAAAbABsAAAARAAoAAAAbABsAAAALAAkAAAAaABsAAAAMAAgAAAAaABsAAAAKAAoAAAAaABsAAAAMAAoAAAAaABsAAAANAAkAAAAaABsAAAANAAcAAAAaABsAAAAOAAgAAAAaABsAAAAPAAcAAAAaABsAAAAPAAkAAAAaABsAAAAOAAoAAAAaABsAAAAQAAgAAAAaABsAAAAQAAoAAAAaABsAAAARAAcAAAAaABsAAAARAAkAAAAaABsAAAAKAAYAAAAaABsAAAAJAAUAAAAaABsAAAAIAAQAAAAaABsAAAAHAAMAAAAaABsAAAAKAAQAAAAaABsAAAAJAAMAAAAaABsAAAALAAUAAAAaABsAAAAMAAQAAAAaABsAAAANAAUAAAAaABsAAAAMAAYAAAAaABsAAAAMAAMAAAAbABsAAAALAAMAAAAaABsAAAAOAAQAAAAaABsAAAAPAAMAAAAaABsAAAAQAAQAAAAaABsAAAARAAUAAAAaABsAAAASAAYAAAAaABsAAAATAAcAAAAaABsAAAAUAAgAAAAaABsAAAAPAAUAAAAaABsAAAAQAAYAAAAaABsAAAAOAAYAAAAaABsAAAARAAMAAAAaABsAAAASAAQAAAAaABsAAAATAAMAAAAaABsAAAAVAAMAAAAaABsAAAAUAAQAAAAaABsAAAATAAUAAAAaABsAAAAVAAUAAAAaABsAAAAUAAYAAAAaABsAAAASAAgAAAAaABsAAAAVAAcAAAAaABsAAAATAAkAAAAaABsAAAASAAoAAAAaABsAAAAUAAoAAAAaABsAAAAVAAkAAAAaABsAAAAHAAUAAAAaABsAAAAIAAYAAAAaABsAAAAJAAcAAAAaABsAAAAHAAYAAAAbABsAAAAHAAcAAAAaABsAAAAIAAgAAAAaABsAAAAJAAkAAAAaABsAAAAHAAkAAAAaABsAAAAIAAoAAAAaABsAAAAHAAoAAAAbABsAAAAIAAkAAAAbABsAAAAJAAgAAAAbABsAAAALAAYAAAAbABsAAAAMAAUAAAAbABsAAAANAAQAAAAbABsAAAAOAAMAAAAbABsAAAAHAAgAAAAbABsAAAAIAAcAAAAbABsAAAAJAAYAAAAbABsAAAAKAAUAAAAbABsAAAALAAQAAAAbABsAAAAIAAUAAAAbABsAAAAJAAQAAAAbABsAAAAKAAMAAAAbABsAAAAHAAQAAAAbABsAAAAIAAMAAAAbABsAAAAJAAoAAAAbABsAAAAPAAQAAAAbABsAAAAQAAUAAAAbABsAAAARAAYAAAAbABsAAAASAAcAAAAbABsAAAATAAgAAAAbABsAAAAUAAkAAAAbABsAAAAVAAoAAAAbABsAAAANAAMAAAAaABsAAAAOAAUAAAAbABsAAAAPAAYAAAAbABsAAAASAAkAAAAbABsAAAATAAoAAAAbABsAAAANAAYAAAAbABsAAAAQAAMAAAAbABsAAAARAAQAAAAbABsAAAASAAUAAAAbABsAAAATAAYAAAAbABsAAAAUAAcAAAAbABsAAAAVAAgAAAAbABsAAAASAAMAAAAbABsAAAATAAQAAAAbABsAAAAUAAUAAAAbABsAAAAVAAYAAAAbABsAAAAUAAMAAAAbABsAAAAVAAQAAAAbABsAAAA=")
 tile_set = SubResource("TileSet_j5jx5")
 
-[node name="MovableCellHandler" type="Node2D" parent="."]
+[node name="GameManager" parent="." node_paths=PackedStringArray("_characters") instance=ExtResource("2_lpvoh")]
+_characters = NodePath("Characters")
+
+[node name="MovableCellHandler" type="Node2D" parent="GameManager"]
 position = Vector2(224, 96)
 script = ExtResource("2_74lek")
 Rows = 4
 Columns = 7
 metadata/_custom_type_script = "uid://cjaw6j1gd8ty3"
 
-[node name="Nightborne" parent="." instance=ExtResource("1_errlg")]
+[node name="Characters" type="Node" parent="GameManager"]
+
+[node name="Nightborne" parent="GameManager/Characters" instance=ExtResource("1_errlg")]
 position = Vector2(321, 322)
 scale = Vector2(1.5, 1.5)
 
-[node name="Knight" parent="." instance=ExtResource("2_bl13t")]
+[node name="Knight" parent="GameManager/Characters" instance=ExtResource("2_bl13t")]
 position = Vector2(257, 320)
+
+[node name="ActionBar" parent="GameManager" instance=ExtResource("5_j5jx5")]
+anchors_preset = 0
+offset_left = 298.0
+offset_top = 405.0
+offset_right = 593.0
+offset_bottom = 436.0
