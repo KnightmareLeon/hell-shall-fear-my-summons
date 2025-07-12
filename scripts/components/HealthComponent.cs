@@ -8,22 +8,24 @@ public partial class HealthComponent : Component
 
     [Export]
     private int _maxHealth = 100;
-    [Export]
     private int _health = 100;
-    public int Health
+
+    [Export(PropertyHint.Range, "1,100,1,or_greater")]
+    public int MaxHealth
     {
-        get { return _health; }
+        get => _maxHealth;
         set
         {
-            if (value < 0)
-            {
-                _health = 0;
-            }
-            if (value > _maxHealth)
-            {
-                _health = _maxHealth;
-            }
+            _maxHealth = Mathf.Clamp(value, 1, int.MaxValue);
+            GD.Print("Max Health set to " + _maxHealth);
         }
+    }
+
+    [Export(PropertyHint.Range, "0,100,1,or_greater")]
+    public int Health
+    {
+        get => _health;
+        set => _health = Mathf.Clamp(value, 0, _maxHealth);
     }
 
     [Export]

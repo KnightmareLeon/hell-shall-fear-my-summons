@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bi4ay2nf1nk22"]
+[gd_scene load_steps=22 format=3 uid="uid://bi4ay2nf1nk22"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://h7n6hgy71q2c" path="res://scripts/components/ActionPointsComponent.cs" id="6_gc0tx"]
 [ext_resource type="Script" uid="uid://cmnti8ndy2o5l" path="res://scripts/components/MovementComponent.cs" id="7_2c3xo"]
 [ext_resource type="Script" uid="uid://cfot7wsulnbxh" path="res://scripts/components/SelectableComponent.cs" id="7_gc0tx"]
+[ext_resource type="Script" uid="uid://qrg0u2ltre87" path="res://scripts/components/BasicAttackComponent.cs" id="8_2c3xo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0ari"]
 atlas = ExtResource("1_6jhk5")
@@ -100,7 +101,6 @@ shape = SubResource("RectangleShape2D_6dwrx")
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
 script = ExtResource("2_x30qq")
 _maxHealth = 200
-_health = 200
 _defenseComponent = NodePath("../DefenseComponent")
 metadata/_custom_type_script = "uid://m1ioxryjx4h7"
 
@@ -121,6 +121,10 @@ metadata/_custom_type_script = "uid://cmnti8ndy2o5l"
 [node name="SelectableComponent" type="Node" parent="."]
 script = ExtResource("7_gc0tx")
 metadata/_custom_type_script = "uid://cfot7wsulnbxh"
+
+[node name="BasicAttackComponent" type="Node" parent="."]
+script = ExtResource("8_2c3xo")
+metadata/_custom_type_script = "uid://qrg0u2ltre87"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("3_afucq")

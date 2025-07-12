@@ -3,6 +3,15 @@ namespace Godot.Game.HSFMS.Components;
 [GlobalClass]
 public partial class MovementComponent : Component
 {
-    [Export]
-    public int Movement { get; set; } = 1;
+    private int _movement = 1;
+    [Export(PropertyHint.Range, "1,10,1")]
+    public int Movement
+    {
+        get => _movement;
+        set
+        {
+            _movement = Mathf.Clamp(value, 1, 10);
+            GD.Print("Movement set to " + _movement);
+        }
+    }
 }
