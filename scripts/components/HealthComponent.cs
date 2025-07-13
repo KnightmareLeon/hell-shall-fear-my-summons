@@ -6,7 +6,6 @@ namespace Godot.Game.HSFMS.Components;
 public partial class HealthComponent : Component
 {
 
-    [Export]
     private int _maxHealth = 100;
     private int _health = 100;
 

@@ -100,7 +100,7 @@ shape = SubResource("RectangleShape2D_6dwrx")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
 script = ExtResource("2_x30qq")
-_maxHealth = 200
+MaxHealth = 200
 _defenseComponent = NodePath("../DefenseComponent")
 metadata/_custom_type_script = "uid://m1ioxryjx4h7"
 
@@ -112,6 +112,8 @@ metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
 [node name="ActionPointsComponent" type="Node" parent="."]
 script = ExtResource("6_gc0tx")
+MaxActionPoints = 1
+ActionPoints = 1
 metadata/_custom_type_script = "uid://h7n6hgy71q2c"
 
 [node name="MovementComponent" type="Node" parent="."]
