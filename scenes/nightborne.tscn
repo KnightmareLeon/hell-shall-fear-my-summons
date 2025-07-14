@@ -87,7 +87,7 @@ size = Vector2(22, 24)
 script = ExtResource("1_n4puj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-5, -5)
+position = Vector2(-5, -6)
 sprite_frames = SubResource("SpriteFrames_7wbmw")
 animation = &"idle"
 autoplay = "idle"
@@ -119,6 +119,7 @@ metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
 script = ExtResource("8_7wbmw")
+Cooldown = 0
 metadata/_custom_type_script = "uid://cgbklyr3b4hey"
 
 [node name="DamageComponent" type="Node" parent="ActiveSkillsComponent/BasicAttack"]

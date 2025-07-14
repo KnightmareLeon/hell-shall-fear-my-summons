@@ -5,15 +5,29 @@ namespace Godot.Game.HSFMS.Components;
 [GlobalClass]
 public partial class DefenseComponent : Component
 {
-
+    [ExportGroup("Defenses")]
     [Export]
     public int PhysicalDefense { get; set; } = 0;
     [Export]
     public int MagicalResistance { get; set; } = 0;
     [Export]
+    public int HeatResistance { get; set; } = 0;
+    [Export]
+    public int ColdResistance { get; set; } = 0;
+    [Export]
+    public int CorrosiveResistance { get; set; } = 0;
+
+    [ExportGroup("Immunities")]
+    [Export]
     public bool PhysicalImmune = false;
     [Export]
     public bool MagicalImmune = false;
+    [Export]
+    public bool HeatImmune = false;
+    [Export]
+    public bool ColdImmune = false;
+    [Export]
+    public bool CorrosiveImmune = false;
 
     public int ReduceDamage(int damage, DamageType attackType, int pierce)
     {
@@ -28,6 +42,18 @@ public partial class DefenseComponent : Component
             case DamageType.MAGICAL:
                 defense = MagicalResistance;
                 immuneMultiplier = MagicalImmune ? 0 : 1;
+                break;
+            case DamageType.HEAT:
+                defense = HeatResistance;
+                immuneMultiplier = HeatImmune ? 0 : 1;
+                break;
+            case DamageType.COLD:
+                defense = ColdResistance;
+                immuneMultiplier = ColdImmune ? 0 : 1;
+                break;
+            case DamageType.CORROSIVE:
+                defense = CorrosiveResistance;
+                immuneMultiplier = CorrosiveImmune ? 0 : 1;
                 break;
             case DamageType.PURE:
             default:

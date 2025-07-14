@@ -4,5 +4,8 @@ public enum DamageType
 {
     PHYSICAL,
     MAGICAL,
+    HEAT,
+    COLD,
+    CORROSIVE,
     PURE
 }
