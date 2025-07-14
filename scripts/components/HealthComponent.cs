@@ -47,9 +47,4 @@ public partial class HealthComponent : Component
             EmitSignal(nameof(ZeroHealthEventHandler));
         }
     }
-
-    public void Heal(int heal)
-    {
-        Health += heal;
-    }
 }

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Hell Shall Fear My Summons"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/hsfms_tools/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
