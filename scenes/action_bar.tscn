@@ -4,7 +4,6 @@
 bg_color = Color(0.767815, 0.560566, 1.54018e-06, 1)
 
 [node name="ActionBar" type="PanelContainer"]
-anchors_preset = -1
 offset_right = 295.0
 offset_bottom = 26.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_migop")
@@ -12,14 +11,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_migop")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="MoveButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-action_mode = 0
-keep_pressed_outside = true
-text = "Move"
-
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="AttackButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Attack"

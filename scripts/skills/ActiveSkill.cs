@@ -4,7 +4,7 @@ using Godot.Game.HSFMS.Types;
 namespace Godot.Game.HSFMS.Skills;
 
 [GlobalClass]
-public partial class Skill : Node
+public partial class ActiveSkill : Node
 {
     [Signal]
     public delegate void DamageEventHandler(int damage, DamageType damageType);

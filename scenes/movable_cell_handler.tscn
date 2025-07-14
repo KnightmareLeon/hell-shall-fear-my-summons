@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0uv01op3qab4"]
-
-[ext_resource type="Script" uid="uid://cjaw6j1gd8ty3" path="res://scripts/MovableCellHandler.cs" id="1_s2r1n"]
-
-[node name="MovableCellHandler" type="Node2D"]
-script = ExtResource("1_s2r1n")
-Rows = 4
-Columns = 3

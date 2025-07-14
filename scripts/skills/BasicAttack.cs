@@ -4,7 +4,7 @@ namespace Godot.Game.HSFMS.Skills;
 
 [Tool]
 [GlobalClass]
-public partial class BasicAttack : Skill
+public partial class BasicAttack : ActiveSkill
 {
     public override string[] _GetConfigurationWarnings()
     {

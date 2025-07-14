@@ -13,11 +13,7 @@ public partial class HealthComponent : Component
     public int MaxHealth
     {
         get => _maxHealth;
-        set
-        {
-            _maxHealth = Mathf.Clamp(value, 1, int.MaxValue);
-            GD.Print("Max Health set to " + _maxHealth);
-        }
+        set => _maxHealth = Mathf.Clamp(value, 1, int.MaxValue);
     }
 
     [Export(PropertyHint.Range, "0,100,1,or_greater")]
