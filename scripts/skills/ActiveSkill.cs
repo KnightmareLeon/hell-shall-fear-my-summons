@@ -36,10 +36,12 @@ public partial class ActiveSkill : Node
 
     public void DealDamage()
     {
+        Script damageScript = GD.Load<Script>("res://scripts/components/DamageComponent.cs");
         foreach (Node child in GetChildren())
         {
-            if (child is DamageComponent damageComponent)
+            if ((Script)child.GetScript() == damageScript)
             {
+                DamageComponent damageComponent = (DamageComponent)child;
                 EmitSignal(nameof(Damage), damageComponent.Damage, Variant.From(damageComponent.DamageType));
             }
         }
