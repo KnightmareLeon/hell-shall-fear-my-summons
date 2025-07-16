@@ -1,5 +1,3 @@
-using Godot.Game.HSFMS.Components;
-
 namespace Godot.Game.HSFMS.Skills;
 
 [Tool]
@@ -13,7 +11,6 @@ public partial class BasicAttack : ActiveSkill
         {
             if (child is not null && (Script)child.GetScript() == damageComponentScript)
             {
-                GD.Print("DamageComponent Set");
                 return [];
             }
         }

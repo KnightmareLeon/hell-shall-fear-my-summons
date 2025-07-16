@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bi4ay2nf1nk22"]
+[gd_scene load_steps=19 format=3 uid="uid://bi4ay2nf1nk22"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
 [ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_x30qq"]
 [ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
-[ext_resource type="Script" uid="uid://cfot7wsulnbxh" path="res://scripts/components/SelectableComponent.cs" id="7_gc0tx"]
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="8_7wbmw"]
 [ext_resource type="Script" uid="uid://bjvteh0fffpxv" path="res://scripts/components/DamageComponent.cs" id="9_6dwrx"]
 
@@ -93,6 +92,7 @@ autoplay = "idle"
 frame_progress = 0.81336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_6dwrx")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
@@ -107,10 +107,6 @@ PhysicalDefense = 3
 MagicalResistance = 5
 metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
-[node name="SelectableComponent" type="Node" parent="."]
-script = ExtResource("7_gc0tx")
-metadata/_custom_type_script = "uid://cfot7wsulnbxh"
-
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("6_517xq")
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
@@ -118,9 +114,10 @@ metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
 script = ExtResource("8_7wbmw")
 Cooldown = 0
+SkillCost = 1
 metadata/_custom_type_script = "uid://cgbklyr3b4hey"
 
 [node name="DamageComponent" type="Node" parent="ActiveSkillsComponent/BasicAttack"]
 script = ExtResource("9_6dwrx")
-Damage = 20
+BaseDamage = 25
 metadata/_custom_type_script = "uid://bjvteh0fffpxv"

@@ -15,8 +15,6 @@ public partial class HealthComponent : Component
         get => _maxHealth;
         set => _maxHealth = Mathf.Clamp(value, 1, int.MaxValue);
     }
-
-    [Export(PropertyHint.Range, "0,100,1,or_greater")]
     public int Health
     {
         get => _health;

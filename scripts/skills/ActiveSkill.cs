@@ -1,18 +1,15 @@
-using System;
 using Godot.Game.HSFMS.Components;
 using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Skills;
 
 [GlobalClass]
-public partial class ActiveSkill : Node
+public partial class ActiveSkill : BaseSkill
 {
     private int _cooldown = 1;
     private int _currentCooldown = 0;
-    [Signal]
-    public delegate void DamageEventHandler(int damage, DamageType damageType);
-    [Export]
-    public string AnimationName { get; set; }
+    private int _skillCost = 0;
+
     [Export(PropertyHint.Range, "0,10,1,or_greater")]
     public int Cooldown
     {
@@ -27,8 +24,16 @@ public partial class ActiveSkill : Node
         set => _currentCooldown = Mathf.Clamp(value, 0, Cooldown);
     }
     
+    [Export(PropertyHint.Range, "0,10,1,or_greater")]
+    public int SkillCost
+    {
+        get => _skillCost;
+        set => _skillCost = Mathf.Clamp(value,0,int.MaxValue);
+    }
     [Export]
-    public int SkillCost { get; set; } = 1;
+    public string AnimationName { get; set; }
+    [Signal]
+    public delegate void DamageEventHandler(int damage, DamageType damageType);
     public virtual void DoSkill()
     {
 

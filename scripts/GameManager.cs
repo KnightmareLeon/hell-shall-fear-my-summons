@@ -9,24 +9,14 @@ public partial class GameManager : Node
     private Node _characters;
     [Export]
     private Node _characterPlacementAreas;
-    private CharacterBody2D _selectedCharacter;
-
     private CharacterPlacementArea _currentCharacterPlacementArea;
 
     public override void _Ready()
     {
-        foreach (Node child in _characters.GetChildren())
-        {
-            if (child is CharacterBody2D && child.HasNode("SelectableComponent"))
-            {
-                SelectableComponent selectableComp = (SelectableComponent)child.GetNode("SelectableComponent");
-                selectableComp.Connect(nameof(selectableComp.SendSelectedCharacter), new Callable(this, nameof(GetSelectedUnit)));
-            }
-        }
-
+        Script charAreaScript = GD.Load<Script>("res://scripts/CharacterPlacementArea.cs");
         foreach (Node child in _characterPlacementAreas.GetChildren())
         {
-            if (child is Area2D && (Script)child.GetScript() == GD.Load<Script>("res://scripts/CharacterPlacementArea.cs"))
+            if (child is Area2D && (Script)child.GetScript() == charAreaScript)
             {
                 CharacterPlacementArea childArea = (CharacterPlacementArea)child;
                 childArea.Connect(nameof(childArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
@@ -44,9 +34,4 @@ public partial class GameManager : Node
         }
     }
 
-    public void GetSelectedUnit(CharacterBody2D character)
-    {
-        _selectedCharacter = character;
-        GD.Print(character.Name + " currently selected.");
-    }
 }
