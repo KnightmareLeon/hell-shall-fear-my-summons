@@ -9,6 +9,8 @@ public partial class CharacterPlacementArea : Area2D
     private AnimatedSprite2D _animatedSprite2D;
 
     private CharacterBody2D _character;
+
+    public (int, int) Index { get; set; }
     public override void _Ready()
     {
         _animatedSprite2D = (AnimatedSprite2D)GetNode("AnimatedSprite2D");

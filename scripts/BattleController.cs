@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Godot.Collections;
 
 namespace Godot.Game.HSFMS;
@@ -5,52 +7,92 @@ namespace Godot.Game.HSFMS;
 [GlobalClass][Tool]
 public partial class BattleController : Node
 {
-    private CharacterPlacementArea[,] _characterPlacementAreas;
+    private CharacterPlacementArea[,] _playerCharacterPlacementAreas;
+    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas;
     private CharacterPlacementArea _selectedCharacterPlacementArea;
-    private Node _characterPlacementAreasNode;
-    private int _totalRows = 1;
-    private int _totalColumns = 1;
+    private Node _playerPlacementAreasNode;
+    private Node _enemyPlacementAreasNode;
+    private int _playerTotalRows = 1;
+    private int _playerTotalColumns = 1;
+    private int _enemyTotalRows = 1;
+    private int _enemyTotalColumns = 1;
     [Export]
     private Node _characters;
     [Export]
-    public Node CharacterPlacementAreasNode
+    public Node PlayerPlacementAreasNode
     {
-        get => _characterPlacementAreasNode;
+        get => _playerPlacementAreasNode;
         set
         {
-            _characterPlacementAreasNode = value;
+            _playerPlacementAreasNode = value;
+            UpdateConfigurationWarnings();
+        }
+    }
+        [Export]
+    public Node EnemyPlacementAreasNode
+    {
+        get => _enemyPlacementAreasNode;
+        set
+        {
+            _enemyPlacementAreasNode = value;
             UpdateConfigurationWarnings();
         }
     }
     [Export(PropertyHint.Range, "1,10,1,or_greater")]
-    public int TotalRows
+    public int PlayerTotalRows
     {
-        get => _totalRows;
+        get => _playerTotalRows;
         set
         {
-            _totalRows = Mathf.Clamp(value, 1, int.MaxValue);
-            _characterPlacementAreas = new CharacterPlacementArea[_totalRows, _totalColumns];
+            _playerTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
+            _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
         }
     }
     [Export(PropertyHint.Range, "1,10,1,or_greater")]
-    public int TotalColumns
+    public int PlayerTotalColumns
     {
-        get => _totalColumns;
+        get => _playerTotalColumns;
         set
         {
-            _totalColumns = Mathf.Clamp(value, 1, int.MaxValue);
-            _characterPlacementAreas = new CharacterPlacementArea[_totalRows, _totalColumns];
+            _playerTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
+            _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
+        }
+    }
+
+    [Export(PropertyHint.Range, "1,10,1,or_greater")]
+    public int EnemyTotalRows
+    {
+        get => _enemyTotalRows;
+        set
+        {
+            _enemyTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
+            _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
+        }
+    }
+    [Export(PropertyHint.Range, "1,10,1,or_greater")]
+    public int EnemyTotalColumns
+    {
+        get => _enemyTotalColumns;
+        set
+        {
+            _enemyTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
+            _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
         }
     }
 
 
     public override string[] _GetConfigurationWarnings()
     {
-        if (_characterPlacementAreasNode == null)
+        List<string> result = [];
+        if (_playerPlacementAreasNode == null)
         {
-            return ["Battle Controller needs a node that will handle the Character Placement Areas."];
+            result.Add("Battle Controller needs a node that will handle the Character Placement Areas for the Player.");
         }
-        return [];
+        if (_enemyPlacementAreasNode == null)
+        {
+            result.Add("Battle Controller needs a node that will handle the Character Placement Areas for the Enemy.");
+        }
+        return [.. result];
     }
     public override void _Ready()
     {
@@ -59,7 +101,14 @@ public partial class BattleController : Node
 
     private void ConnectingCharacterPlacementsAreas()
     {
-        foreach (Node child in _characterPlacementAreasNode.GetChildren())
+        foreach (Node child in _playerPlacementAreasNode.GetChildren())
+        {
+            if (child is CharacterPlacementArea childCharArea)
+            {
+                childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+            }
+        }
+        foreach (Node child in _enemyPlacementAreasNode.GetChildren())
         {
             if (child is CharacterPlacementArea childCharArea)
             {

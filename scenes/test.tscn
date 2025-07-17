@@ -1485,9 +1485,10 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAKAAcAAAAbABsAAAALAAcAAAAaABsAAAAKAAgAAAAaABsAAAALAAgAAAAbABsAAAAMAAkAAAAbABsAAAAKAAkAAAAbABsAAAAMAAcAAAAbABsAAAANAAgAAAAbABsAAAAOAAkAAAAbABsAAAAOAAcAAAAbABsAAAAPAAgAAAAbABsAAAAQAAkAAAAbABsAAAAQAAcAAAAbABsAAAARAAgAAAAbABsAAAALAAoAAAAbABsAAAANAAoAAAAbABsAAAAPAAoAAAAbABsAAAARAAoAAAAbABsAAAALAAkAAAAaABsAAAAMAAgAAAAaABsAAAAKAAoAAAAaABsAAAAMAAoAAAAaABsAAAANAAkAAAAaABsAAAANAAcAAAAaABsAAAAOAAgAAAAaABsAAAAPAAcAAAAaABsAAAAPAAkAAAAaABsAAAAOAAoAAAAaABsAAAAQAAgAAAAaABsAAAAQAAoAAAAaABsAAAARAAcAAAAaABsAAAARAAkAAAAaABsAAAAKAAYAAAAaABsAAAAJAAUAAAAaABsAAAAIAAQAAAAaABsAAAAHAAMAAAAaABsAAAAKAAQAAAAaABsAAAAJAAMAAAAaABsAAAALAAUAAAAaABsAAAAMAAQAAAAaABsAAAANAAUAAAAaABsAAAAMAAYAAAAaABsAAAAMAAMAAAAbABsAAAALAAMAAAAaABsAAAAOAAQAAAAaABsAAAAPAAMAAAAaABsAAAAQAAQAAAAaABsAAAARAAUAAAAaABsAAAASAAYAAAAaABsAAAATAAcAAAAaABsAAAAUAAgAAAAaABsAAAAPAAUAAAAaABsAAAAQAAYAAAAaABsAAAAOAAYAAAAaABsAAAARAAMAAAAaABsAAAASAAQAAAAaABsAAAATAAMAAAAaABsAAAAVAAMAAAAaABsAAAAUAAQAAAAaABsAAAATAAUAAAAaABsAAAAVAAUAAAAaABsAAAAUAAYAAAAaABsAAAASAAgAAAAaABsAAAAVAAcAAAAaABsAAAATAAkAAAAaABsAAAASAAoAAAAaABsAAAAUAAoAAAAaABsAAAAVAAkAAAAaABsAAAAHAAUAAAAaABsAAAAIAAYAAAAaABsAAAAJAAcAAAAaABsAAAAHAAYAAAAbABsAAAAHAAcAAAAaABsAAAAIAAgAAAAaABsAAAAJAAkAAAAaABsAAAAHAAkAAAAaABsAAAAIAAoAAAAaABsAAAAHAAoAAAAbABsAAAAIAAkAAAAbABsAAAAJAAgAAAAbABsAAAALAAYAAAAbABsAAAAMAAUAAAAbABsAAAANAAQAAAAbABsAAAAOAAMAAAAbABsAAAAHAAgAAAAbABsAAAAIAAcAAAAbABsAAAAJAAYAAAAbABsAAAAKAAUAAAAbABsAAAALAAQAAAAbABsAAAAIAAUAAAAbABsAAAAJAAQAAAAbABsAAAAKAAMAAAAbABsAAAAHAAQAAAAbABsAAAAIAAMAAAAbABsAAAAJAAoAAAAbABsAAAAPAAQAAAAbABsAAAAQAAUAAAAbABsAAAARAAYAAAAbABsAAAASAAcAAAAbABsAAAATAAgAAAAbABsAAAAUAAkAAAAbABsAAAAVAAoAAAAbABsAAAANAAMAAAAaABsAAAAOAAUAAAAbABsAAAAPAAYAAAAbABsAAAASAAkAAAAbABsAAAATAAoAAAAbABsAAAANAAYAAAAbABsAAAAQAAMAAAAbABsAAAARAAQAAAAbABsAAAASAAUAAAAbABsAAAATAAYAAAAbABsAAAAUAAcAAAAbABsAAAAVAAgAAAAbABsAAAASAAMAAAAbABsAAAATAAQAAAAbABsAAAAUAAUAAAAbABsAAAAVAAYAAAAbABsAAAAUAAMAAAAbABsAAAAVAAQAAAAbABsAAAA=")
 tile_set = SubResource("TileSet_j5jx5")
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("_characters", "_characterPlacementAreas") instance=ExtResource("2_lpvoh")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("_characters", "PlayerPlacementAreasNode", "EnemyPlacementAreasNode") instance=ExtResource("2_lpvoh")]
 _characters = NodePath("Characters")
-_characterPlacementAreas = NodePath("CharacterPlacementAreas")
+PlayerPlacementAreasNode = NodePath("PlayerPlacementAreas")
+EnemyPlacementAreasNode = NodePath("EnemyPlacementAreas")
 
 [node name="Characters" type="Node" parent="GameManager"]
 
@@ -1498,16 +1499,21 @@ scale = Vector2(1.5, 1.5)
 [node name="Knight" parent="GameManager/Characters" instance=ExtResource("2_bl13t")]
 position = Vector2(384, 192)
 
-[node name="CharacterPlacementAreas" type="Node" parent="GameManager"]
+[node name="PlayerPlacementAreas" type="Node" parent="GameManager"]
 
-[node name="CharacterPlacementArea" parent="GameManager/CharacterPlacementAreas" instance=ExtResource("6_lpvoh")]
+[node name="CharacterPlacementArea" parent="GameManager/PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(384, 288)
 
-[node name="CharacterPlacementArea2" parent="GameManager/CharacterPlacementAreas" instance=ExtResource("6_lpvoh")]
+[node name="CharacterPlacementArea2" parent="GameManager/PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(384, 192)
 
-[node name="CharacterPlacementArea3" parent="GameManager/CharacterPlacementAreas" instance=ExtResource("6_lpvoh")]
+[node name="CharacterPlacementArea3" parent="GameManager/PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(288, 192)
+
+[node name="EnemyPlacementAreas" type="Node" parent="GameManager"]
+
+[node name="CharacterPlacementArea" parent="GameManager/EnemyPlacementAreas" instance=ExtResource("6_lpvoh")]
+position = Vector2(512, 192)
 
 [node name="ActionBar" parent="GameManager" instance=ExtResource("5_j5jx5")]
 offset_left = 298.0
