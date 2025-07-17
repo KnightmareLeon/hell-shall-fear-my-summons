@@ -1,6 +1,6 @@
-using Godot;
-using System;
+namespace Godot.Game.HSFMS;
 
+[GlobalClass] [Tool]
 public partial class CharacterPlacementArea : Area2D
 {
     [Signal]

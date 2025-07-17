@@ -2,7 +2,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Components;
 
-[GlobalClass, Icon("res://assets/icons/icon_sword.png")]
+[GlobalClass, Icon("res://assets/icons/icon_sword.png")] [Tool]
 public partial class DamageComponent : Component
 {
     private int _baseDamage = 1;
@@ -24,5 +24,5 @@ public partial class DamageComponent : Component
     }
 
     [Export]
-    public DamageType DamageType { get; set; }
+    public DamageType DamageType { get; set; } = DamageType.PHYSICAL;
 }

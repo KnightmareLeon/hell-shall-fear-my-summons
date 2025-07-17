@@ -1,32 +1,26 @@
+using Godot.Game.HSFMS.Components;
+
 namespace Godot.Game.HSFMS.Skills;
 
-[Tool]
-[GlobalClass]
+[GlobalClass] [Tool]
 public partial class BasicAttack : ActiveSkill
 {
     public override string[] _GetConfigurationWarnings()
     {
-        Script damageComponentScript = GD.Load<Script>("res://scripts/components/DamageComponent.cs");
         foreach (Node child in GetChildren())
         {
-            if (child is not null && (Script)child.GetScript() == damageComponentScript)
+            if (child is DamageComponent)
             {
                 return [];
             }
         }
-        return ["Basic Attack Skill needs one DamageComponent"];
+        return ["Basic Attack Skill needs one DamageComponent."];
     }
 
     public override void _Ready()
     {
-        if (!IsConnected("child_entered_tree", new Callable(this, nameof(OnChildEnteredTree))))
-        {
-            Connect("child_entered_tree", new Callable(this, nameof(OnChildEnteredTree)));
-        }
-        if (!IsConnected("child_exiting_tree", new Callable(this, nameof(OnChildExitingTree))))
-        {
-            Connect("child_exiting_tree", new Callable(this, nameof(OnChildExitingTree)));
-        }
+        Connect("child_entered_tree", new Callable(this, nameof(OnChildEnteredTree)));
+        Connect("child_exiting_tree", new Callable(this, nameof(OnChildExitingTree)));
     }
 
     private void OnChildEnteredTree(Node child)

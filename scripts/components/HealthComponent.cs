@@ -2,7 +2,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Components;
 
-[GlobalClass]
+[GlobalClass, Icon("res://assets/icons/icon_heart.png")]  [Tool]
 public partial class HealthComponent : Component
 {
 

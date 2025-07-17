@@ -2,7 +2,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Components;
 
-[GlobalClass]
+[GlobalClass, Icon("res://assets/icons/icon_shield.png")]  [Tool]
 public partial class DefenseComponent : Component
 {
     [ExportGroup("Defenses")]

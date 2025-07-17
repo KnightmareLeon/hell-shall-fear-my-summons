@@ -71,6 +71,8 @@ metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")
+MaxSkillPoints = 1
+CurrentSkillPoints = 1
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]

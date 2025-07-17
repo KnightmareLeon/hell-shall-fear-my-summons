@@ -1,6 +1,6 @@
 namespace Godot.Game.HSFMS.Components;
 
-[GlobalClass]
+[GlobalClass]  [Tool]
 public abstract partial class Component : Node
 {
 

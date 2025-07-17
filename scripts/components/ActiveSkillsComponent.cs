@@ -1,6 +1,6 @@
 namespace Godot.Game.HSFMS.Components;
 
-[GlobalClass]
+[GlobalClass]  [Tool]
 public partial class ActiveSkillsComponent : Component
 {
     private int _maxSkillPoints;

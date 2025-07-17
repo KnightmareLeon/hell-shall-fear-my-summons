@@ -1,6 +1,6 @@
 namespace Godot.Game.HSFMS.Skills;
 
-[GlobalClass]
+[GlobalClass]  [Tool]
 public abstract partial class BaseSkill : Node
 {
     [Export]

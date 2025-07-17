@@ -3,7 +3,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Skills;
 
-[GlobalClass]
+[GlobalClass]  [Tool]
 public partial class ActiveSkill : BaseSkill
 {
     private int _cooldown = 1;
