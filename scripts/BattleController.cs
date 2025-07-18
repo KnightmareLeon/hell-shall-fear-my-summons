@@ -7,8 +7,8 @@ namespace Godot.Game.HSFMS;
 [GlobalClass][Tool]
 public partial class BattleController : Node
 {
-    private CharacterPlacementArea[,] _playerCharacterPlacementAreas;
-    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas;
+    private CharacterPlacementArea[,] _playerCharacterPlacementAreas = new CharacterPlacementArea[1,1];
+    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas = new CharacterPlacementArea[1,1];
     private CharacterPlacementArea _selectedCharacterPlacementArea;
     private Node _playerPlacementAreasNode;
     private Node _enemyPlacementAreasNode;
@@ -46,6 +46,7 @@ public partial class BattleController : Node
         {
             _playerTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
             _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
+            UpdateConfigurationWarnings();
         }
     }
     [Export(PropertyHint.Range, "1,10,1,or_greater")]
@@ -56,6 +57,7 @@ public partial class BattleController : Node
         {
             _playerTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
             _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
+            UpdateConfigurationWarnings();
         }
     }
 
@@ -67,6 +69,7 @@ public partial class BattleController : Node
         {
             _enemyTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
             _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
+            UpdateConfigurationWarnings();
         }
     }
     [Export(PropertyHint.Range, "1,10,1,or_greater")]
@@ -77,6 +80,7 @@ public partial class BattleController : Node
         {
             _enemyTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
             _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
+            UpdateConfigurationWarnings();
         }
     }
 
@@ -92,6 +96,14 @@ public partial class BattleController : Node
         {
             result.Add("Battle Controller needs a node that will handle the Character Placement Areas for the Enemy.");
         }
+        if (_playerPlacementAreasNode != null && _playerPlacementAreasNode.GetChildCount() > PlayerTotalColumns * PlayerTotalRows)
+        {
+            result.Add("The number of children of the node handling the player's character placement areas must not exceed " + (PlayerTotalColumns * PlayerTotalRows) + ".");
+        }
+        if (_enemyPlacementAreasNode != null && _enemyPlacementAreasNode.GetChildCount() > EnemyTotalColumns * EnemyTotalRows)
+        {
+            result.Add("The number of children of the node handling the enemy's character placement areas must not exceed " + (EnemyTotalColumns * EnemyTotalRows) + ".");
+        }
         return [.. result];
     }
     public override void _Ready()
@@ -101,18 +113,32 @@ public partial class BattleController : Node
 
     private void ConnectingCharacterPlacementsAreas()
     {
+        int rowIndex = 0; int colIndex = 0;
         foreach (Node child in _playerPlacementAreasNode.GetChildren())
         {
             if (child is CharacterPlacementArea childCharArea)
             {
+                _playerCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
                 childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                childCharArea.Index = (rowIndex, colIndex++);
+                if (colIndex >= PlayerTotalColumns)
+                {
+                    colIndex = 0; rowIndex++;
+                }
             }
         }
+        rowIndex = 0; colIndex = 0;
         foreach (Node child in _enemyPlacementAreasNode.GetChildren())
         {
             if (child is CharacterPlacementArea childCharArea)
             {
+                _enemyCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
                 childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                childCharArea.Index = (rowIndex, colIndex++);
+                if (colIndex >= EnemyTotalColumns)
+                {
+                    colIndex = 0; rowIndex++;
+                }
             }
         }
     }
