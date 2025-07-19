@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=4 uid="uid://belrkeik2afw4"]
 
-[ext_resource type="PackedScene" uid="uid://bi4ay2nf1nk22" path="res://scenes/nightborne.tscn" id="1_errlg"]
+[ext_resource type="PackedScene" uid="uid://bi4ay2nf1nk22" path="res://scenes/characters/nightborne.tscn" id="1_errlg"]
 [ext_resource type="Texture2D" uid="uid://crt12k0ddgatl" path="res://assets/tilesets/TileSet1.png" id="1_iyx0m"]
-[ext_resource type="PackedScene" uid="uid://b8lb27p605010" path="res://scenes/knight.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://b8lb27p605010" path="res://scenes/characters/knight.tscn" id="2_bl13t"]
 [ext_resource type="PackedScene" uid="uid://c7o2trky3fucx" path="res://scenes/battle_controller.tscn" id="2_lpvoh"]
 [ext_resource type="PackedScene" uid="uid://dwr7q2pqc3ep" path="res://scenes/action_bar.tscn" id="5_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://bvh56jhvq0g7" path="res://scenes/character_placement_area.tscn" id="6_lpvoh"]
@@ -1496,10 +1496,10 @@ position = Vector2(384, 192)
 
 [node name="PlayerPlacementAreas" type="Node" parent="."]
 
-[node name="CharacterPlacementArea2" parent="PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
+[node name="CharacterPlacementArea1" parent="PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(384, 192)
 
-[node name="CharacterPlacementArea" parent="PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
+[node name="CharacterPlacementArea2" parent="PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(384, 288)
 
 [node name="CharacterPlacementArea3" parent="PlayerPlacementAreas" instance=ExtResource("6_lpvoh")]

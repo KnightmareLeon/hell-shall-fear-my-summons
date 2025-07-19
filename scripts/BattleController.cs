@@ -114,33 +114,37 @@ public partial class BattleController : Node
     private void ConnectingCharacterPlacementsAreas()
     {
         int rowIndex = 0; int colIndex = 0;
-        foreach (Node child in _playerPlacementAreasNode.GetChildren())
+        if (_playerPlacementAreasNode != null && _enemyCharacterPlacementAreas != null)
         {
-            if (child is CharacterPlacementArea childCharArea)
+            foreach (Node child in _playerPlacementAreasNode.GetChildren())
             {
-                _playerCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
-                childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
-                childCharArea.Index = (rowIndex, colIndex++);
-                if (colIndex >= PlayerTotalColumns)
+                if (child is CharacterPlacementArea childCharArea)
                 {
-                    colIndex = 0; rowIndex++;
+                    _playerCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
+                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                    childCharArea.Index = (rowIndex, colIndex++);
+                    if (colIndex >= PlayerTotalColumns)
+                    {
+                        colIndex = 0; rowIndex++;
+                    }
+                }
+            }
+            rowIndex = 0; colIndex = 0;
+            foreach (Node child in _enemyPlacementAreasNode.GetChildren())
+            {
+                if (child is CharacterPlacementArea childCharArea)
+                {
+                    _enemyCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
+                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                    childCharArea.Index = (rowIndex, colIndex++);
+                    if (colIndex >= EnemyTotalColumns)
+                    {
+                        colIndex = 0; rowIndex++;
+                    }
                 }
             }
         }
-        rowIndex = 0; colIndex = 0;
-        foreach (Node child in _enemyPlacementAreasNode.GetChildren())
-        {
-            if (child is CharacterPlacementArea childCharArea)
-            {
-                _enemyCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
-                childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
-                childCharArea.Index = (rowIndex, colIndex++);
-                if (colIndex >= EnemyTotalColumns)
-                {
-                    colIndex = 0; rowIndex++;
-                }
-            }
-        }
+
     }
 
     private void OnGettingSelectedArea(CharacterBody2D character, CharacterPlacementArea characterPlacementArea)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bi4ay2nf1nk22"]
+[gd_scene load_steps=19 format=3 uid="uid://dou327fqrp3nm"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
-[ext_resource type="Script" uid="uid://dnburfi744j5l" path="res://scripts/nightborne/Nightborne.cs" id="1_n4puj"]
+[ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_x30qq"]
 [ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
@@ -44,7 +44,7 @@ region = Rect2(564, 13, 64, 64)
 atlas = ExtResource("1_6jhk5")
 region = Rect2(644, 13, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7wbmw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_es65v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -79,21 +79,21 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwrx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq5fi"]
 size = Vector2(22, 24)
 
 [node name="Nightborne" type="CharacterBody2D"]
-script = ExtResource("1_n4puj")
+script = ExtResource("1_b3w5c")
+metadata/_custom_type_script = "uid://b3v6ox62j55a6"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_7wbmw")
+sprite_frames = SubResource("SpriteFrames_es65v")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.81336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource("RectangleShape2D_6dwrx")
+shape = SubResource("RectangleShape2D_dq5fi")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
 script = ExtResource("2_x30qq")
@@ -109,6 +109,8 @@ metadata/_custom_type_script = "uid://wuvakcb21x4c"
 
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("6_517xq")
+MaxSkillPoints = 1
+CurrentSkillPoints = 1
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
