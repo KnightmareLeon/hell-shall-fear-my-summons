@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot.Game.HSFMS.Resources;
@@ -19,10 +20,7 @@ public partial class Character : CharacterBody2D
         set
         {
             _baseStats = value;
-            if (_baseStats != null)
-            {
-                CurrentHealth = _baseStats.MaxHealth;
-            }
+            UpdateConfigurationWarnings();
         }
     }
     public int CurrentHealth
@@ -43,6 +41,15 @@ public partial class Character : CharacterBody2D
     public override void _Ready()
     {
 
+    }
+
+    public override string[] _GetConfigurationWarnings()
+    {
+        if (Stats == null)
+        {
+            return ["Character needs custom Base Stats resource."];
+        }
+        return [];
     }
 
 }
