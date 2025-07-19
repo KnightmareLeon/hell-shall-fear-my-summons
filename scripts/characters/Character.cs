@@ -19,32 +19,30 @@ public partial class Character : CharacterBody2D
         set
         {
             _baseStats = value;
-            UpdateConfigurationWarnings();
+            if (_baseStats != null)
+            {
+                CurrentHealth = _baseStats.MaxHealth;
+            }
         }
     }
     public int CurrentHealth
     {
         get => _currentHealth;
-        set => Mathf.Clamp(value, 1, _baseStats.MaxHealth);
+        set
+        {
+            int maxValue = int.MaxValue;
+            if (_baseStats != null)
+            {
+                maxValue = _baseStats.MaxHealth;
+            }
+            _currentHealth = Mathf.Clamp(value, 1, maxValue);
+        }
     }
     public Collections.Dictionary<DamageType, int> ResistanceModifiers = [];
     public Collections.Dictionary<DamageType, bool> ImmunityModifiers = [];
     public override void _Ready()
     {
-        if (Stats != null)
-        {
-            CurrentHealth = _baseStats.MaxHealth;
-        }
-    }
 
-    public override string[] _GetConfigurationWarnings()
-    {
-        string[] warnings = [];
-        if (Stats == null)
-        {
-            warnings = ["Character needs a BaseStats resource."];
-        }
-        return [.. base._GetConfigurationWarnings(), .. warnings];
     }
 
 }
