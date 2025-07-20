@@ -19,7 +19,10 @@ public partial class BaseStats : Resource
         get => _maxHealth;
         private set => _maxHealth = Mathf.Clamp(value, 1, int.MaxValue);
     }
-
+    [Export]
+    public double CriticalRate { get; set; } = 0.1;
+    [Export]
+    public double CriticalDamageRatio { get; set; } = 0.5;
     public int GetResistance(DamageType damageType)
     {
         return _resistances.TryGetValue(damageType, out int value) ? value : 0;

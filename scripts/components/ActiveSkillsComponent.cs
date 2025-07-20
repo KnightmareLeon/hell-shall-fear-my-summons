@@ -17,8 +17,6 @@ public partial class ActiveSkillsComponent : Component
         set => _maxSkillPoints = Mathf.Clamp(value, 1, int.MaxValue);
 
     }
-
-    [Export(PropertyHint.Range, "1,100,1, or_greater")]
     public int CurrentSkillPoints
     {
         get => _currentSkillPoints; 

@@ -1,11 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://bept005kkcq05"]
+[gd_scene load_steps=14 format=3 uid="uid://bu4l67fucrbcv"]
 
+[ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
-[ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_swm0g"]
-[ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="3_k2txo"]
+[ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="7_3cm67"]
 [ext_resource type="Script" uid="uid://bjvteh0fffpxv" path="res://scripts/components/DamageComponent.cs" id="8_w8y5l"]
+
+[sub_resource type="Resource" id="Resource_tgwmv"]
+script = ExtResource("2_vw8nl")
+_resistances = Dictionary[int, int]({
+0: 4,
+1: 2,
+2: 2,
+3: 1
+})
+_immunities = Dictionary[int, bool]({})
+MaxHealth = 200
+metadata/_custom_type_script = "uid://c4ndv7vltqcbl"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3i0j8"]
 atlas = ExtResource("1_dp28g")
@@ -23,7 +35,7 @@ region = Rect2(256, 64, 64, 64)
 atlas = ExtResource("1_dp28g")
 region = Rect2(384, 64, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_swm0g"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vw8nl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -43,31 +55,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2txo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgwmv"]
 size = Vector2(20, 55)
 
 [node name="Knight" type="CharacterBody2D"]
+script = ExtResource("1_2bw66")
+Stats = SubResource("Resource_tgwmv")
+metadata/_custom_type_script = "uid://b3v6ox62j55a6"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_swm0g")
+sprite_frames = SubResource("SpriteFrames_vw8nl")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_k2txo")
-
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
-script = ExtResource("2_swm0g")
-_defenseComponent = NodePath("../DefenseComponent")
-metadata/_custom_type_script = "uid://m1ioxryjx4h7"
-
-[node name="DefenseComponent" type="Node" parent="."]
-script = ExtResource("3_k2txo")
-PhysicalDefense = 4
-MagicalResistance = 2
-metadata/_custom_type_script = "uid://wuvakcb21x4c"
+shape = SubResource("RectangleShape2D_tgwmv")
 
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")

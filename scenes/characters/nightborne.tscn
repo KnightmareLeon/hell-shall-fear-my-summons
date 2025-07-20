@@ -2,11 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
-[ext_resource type="Script" uid="uid://m1ioxryjx4h7" path="res://scripts/components/HealthComponent.cs" id="2_x30qq"]
-[ext_resource type="Script" uid="uid://wuvakcb21x4c" path="res://scripts/components/DefenseComponent.cs" id="4_i0ari"]
+[ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="8_7wbmw"]
 [ext_resource type="Script" uid="uid://bjvteh0fffpxv" path="res://scripts/components/DamageComponent.cs" id="9_6dwrx"]
+
+[sub_resource type="Resource" id="Resource_dq5fi"]
+script = ExtResource("2_es65v")
+_resistances = Dictionary[int, int]({
+0: 2,
+1: 5,
+3: 3
+})
+_immunities = Dictionary[int, bool]({})
+MaxHealth = 200
+CriticalRate = 0.1
+CriticalDamageRatio = 0.5
+metadata/_custom_type_script = "uid://c4ndv7vltqcbl"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0ari"]
 atlas = ExtResource("1_6jhk5")
@@ -84,6 +96,7 @@ size = Vector2(22, 24)
 
 [node name="Nightborne" type="CharacterBody2D"]
 script = ExtResource("1_b3w5c")
+Stats = SubResource("Resource_dq5fi")
 metadata/_custom_type_script = "uid://b3v6ox62j55a6"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -95,22 +108,9 @@ autoplay = "idle"
 visible = false
 shape = SubResource("RectangleShape2D_dq5fi")
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("_defenseComponent")]
-script = ExtResource("2_x30qq")
-MaxHealth = 200
-_defenseComponent = NodePath("../DefenseComponent")
-metadata/_custom_type_script = "uid://m1ioxryjx4h7"
-
-[node name="DefenseComponent" type="Node" parent="."]
-script = ExtResource("4_i0ari")
-PhysicalDefense = 3
-MagicalResistance = 5
-metadata/_custom_type_script = "uid://wuvakcb21x4c"
-
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("6_517xq")
-MaxSkillPoints = 1
-CurrentSkillPoints = 1
+MaxSkillPoints = 3
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
