@@ -1,11 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=12 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
-[ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="7_3cm67"]
-[ext_resource type="Script" uid="uid://bjvteh0fffpxv" path="res://scripts/components/DamageComponent.cs" id="8_w8y5l"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
@@ -17,6 +15,8 @@ _resistances = Dictionary[int, int]({
 })
 _immunities = Dictionary[int, bool]({})
 MaxHealth = 200
+CriticalRate = 0.1
+CriticalDamageRatio = 0.5
 metadata/_custom_type_script = "uid://c4ndv7vltqcbl"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3i0j8"]
@@ -76,15 +76,4 @@ shape = SubResource("RectangleShape2D_tgwmv")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")
 MaxSkillPoints = 1
-CurrentSkillPoints = 1
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
-
-[node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
-script = ExtResource("7_3cm67")
-SkillCost = 1
-metadata/_custom_type_script = "uid://cgbklyr3b4hey"
-
-[node name="DamageComponent" type="Node" parent="ActiveSkillsComponent/BasicAttack"]
-script = ExtResource("8_w8y5l")
-BaseDamage = 10
-metadata/_custom_type_script = "uid://bjvteh0fffpxv"

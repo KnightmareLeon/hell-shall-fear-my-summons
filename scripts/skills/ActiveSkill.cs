@@ -1,4 +1,5 @@
-using Godot.Game.HSFMS.Components;
+
+using Godot.Collections;
 using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS.Skills;
@@ -9,6 +10,8 @@ public partial class ActiveSkill : BaseSkill
     private int _cooldown = 1;
     private int _currentCooldown = 0;
     private int _skillCost = 0;
+    [Export]
+    public Array<Hit> HitArray;
 
     [Export(PropertyHint.Range, "0,10,1,or_greater")]
     public int Cooldown
@@ -16,8 +19,6 @@ public partial class ActiveSkill : BaseSkill
         get => _cooldown;
         set => _cooldown = Mathf.Clamp(value, 0, int.MaxValue);
     }
-
-    [Export(PropertyHint.Range, "0,10,1,or_greater")]
     public int CurrentCooldown
     {
         get => _currentCooldown;
@@ -32,8 +33,7 @@ public partial class ActiveSkill : BaseSkill
     }
     [Export]
     public string AnimationName { get; set; }
-    [Signal]
-    public delegate void DamageEventHandler(int damage, DamageType damageType);
+
     public virtual void DoSkill()
     {
 
@@ -41,14 +41,6 @@ public partial class ActiveSkill : BaseSkill
 
     public void DealDamage()
     {
-        Script damageScript = GD.Load<Script>("res://scripts/components/DamageComponent.cs");
-        foreach (Node child in GetChildren())
-        {
-            if ((Script)child.GetScript() == damageScript)
-            {
-                DamageComponent damageComponent = (DamageComponent)child;
-                EmitSignal(nameof(Damage), damageComponent.Damage, Variant.From(damageComponent.DamageType));
-            }
-        }
+
     }
 }
