@@ -52,4 +52,29 @@ public partial class Character : CharacterBody2D
         return [];
     }
 
+    public void TakeDamage(Hit hit)
+    {
+        int totalDamage = 0;
+        foreach (Damage damage in hit.DamageArray)
+        {
+            totalDamage = ReduceDamage(damage);
+        }
+        CurrentHealth -= totalDamage;
+        
+    }
+
+    public int ReduceDamage(Damage damage)
+    {
+        int resistance = Stats.GetResistance(damage.DamageType) - damage.Pierce;
+        int immunityMultiplier = Stats.GetImmunity(damage.DamageType) ? 1 : 0;
+        if (damage.IsPercentage)
+        {
+            return (int)(Stats.MaxHealth * (damage.BaseDamage / 100.0 - resistance * 0.05) * immunityMultiplier);
+        }
+        else
+        {
+            return (int)(damage.BaseDamage * (1 - resistance * 0.15) * immunityMultiplier);
+        }
+    }
+
 }

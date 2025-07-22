@@ -21,7 +21,7 @@ public partial class Damage : GodotObject
         private set => _pierce = Mathf.Clamp(value, 0, int.MaxValue);
     }
     [Export]
-    public bool DamageIsPercentage { get; private set; } = false;
+    public bool IsPercentage { get; private set; } = false;
     [Export]
     public bool DoesLifesteal { get; private set; } =false;
 }
