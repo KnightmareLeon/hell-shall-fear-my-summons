@@ -7,6 +7,6 @@ public abstract partial class BaseSkill : Node
     private string _effectsDescription;
     [Export]
     private string _flavorText;
-    [Export]
-    public string Icon;
+    [Export(PropertyHint.File)]
+    public string Icon { get; set; }
 }

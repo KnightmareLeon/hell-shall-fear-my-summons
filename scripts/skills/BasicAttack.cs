@@ -2,7 +2,7 @@ using Godot.Game.HSFMS.Components;
 
 namespace Godot.Game.HSFMS.Skills;
 
-[GlobalClass] [Tool]
+[GlobalClass, Icon("res://assets/icons/icon_sword.png")] [Tool]
 public partial class BasicAttack : ActiveSkill
 {
 
