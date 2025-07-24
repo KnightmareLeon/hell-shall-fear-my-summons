@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dou327fqrp3nm"]
+[gd_scene load_steps=18 format=3 uid="uid://dou327fqrp3nm"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
+[ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_poltu"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
 
 [sub_resource type="Resource" id="Resource_dq5fi"]
@@ -110,3 +111,9 @@ shape = SubResource("RectangleShape2D_dq5fi")
 script = ExtResource("6_517xq")
 MaxSkillPoints = 3
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
+
+[node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
+script = ExtResource("5_poltu")
+HitArray = Array[Object]([null])
+Cooldown = 0
+metadata/_custom_type_script = "uid://cgbklyr3b4hey"

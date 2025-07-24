@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=13 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
+[ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_2r4hc"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
@@ -77,3 +78,9 @@ shape = SubResource("RectangleShape2D_tgwmv")
 script = ExtResource("5_swm0g")
 MaxSkillPoints = 1
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
+
+[node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
+script = ExtResource("5_2r4hc")
+HitArray = Array[Object]([null])
+Cooldown = 0
+metadata/_custom_type_script = "uid://cgbklyr3b4hey"

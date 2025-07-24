@@ -2,6 +2,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS;
 
+[GlobalClass][Tool]
 public partial class Damage : GodotObject
 {
     private int _baseDamage = 1;
@@ -23,5 +24,5 @@ public partial class Damage : GodotObject
     [Export]
     public bool IsPercentage { get; private set; } = false;
     [Export]
-    public bool DoesLifesteal { get; private set; } =false;
+    public bool DoesLifesteal { get; private set; } = false;
 }
