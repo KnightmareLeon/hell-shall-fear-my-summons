@@ -1,9 +1,9 @@
 using Godot.Game.HSFMS.Types;
 
-namespace Godot.Game.HSFMS;
+namespace Godot.Game.HSFMS.Resources;
 
 [GlobalClass][Tool]
-public partial class Damage : GodotObject
+public partial class Damage : Resource
 {
     private int _baseDamage = 1;
     private int _pierce = 0;

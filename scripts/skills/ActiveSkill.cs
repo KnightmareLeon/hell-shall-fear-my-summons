@@ -1,6 +1,6 @@
 
 using Godot.Collections;
-using Godot.Game.HSFMS.Types;
+using Godot.Game.HSFMS.Resources;
 
 namespace Godot.Game.HSFMS.Skills;
 

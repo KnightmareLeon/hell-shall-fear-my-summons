@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Godot.Game.HSFMS.Resources;
 using Godot.Game.HSFMS.Types;
 
@@ -55,7 +52,7 @@ public partial class Character : CharacterBody2D
     public void TakeDamage(Hit hit)
     {
         int totalDamage = 0;
-        foreach (Damage damage in hit.DamageArray)
+        foreach (Damage damage in hit.GetDamage())
         {
             totalDamage = ReduceDamage(damage);
         }
