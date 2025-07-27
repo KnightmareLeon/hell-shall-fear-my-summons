@@ -7,6 +7,6 @@ public abstract partial class BaseSkill : Node
     private string _effectsDescription;
     [Export]
     private string _flavorText;
-    [Export(PropertyHint.File)]
-    public string Icon { get; set; }
+    [Export]
+    public Texture2D Icon { get; set; }
 }
