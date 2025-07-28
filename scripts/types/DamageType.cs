@@ -7,5 +7,6 @@ public enum DamageType
     HEAT,
     COLD,
     CORROSIVE,
+    ELECTRIC,
     PURE
 }
