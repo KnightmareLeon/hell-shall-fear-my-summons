@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Hit" load_steps=5 format=3 uid="uid://cbwq7is27whuv"]
+
+[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/Damage.cs" id="1_trelm"]
+[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/Hit.cs" id="2_nfx86"]
+
+[sub_resource type="Resource" id="Resource_seqbr"]
+script = ExtResource("1_trelm")
+DamageType = 0
+BaseDamage = 4
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_wjyvg"]
+script = ExtResource("1_trelm")
+DamageType = 1
+BaseDamage = 4
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[resource]
+script = ExtResource("2_nfx86")
+_damageArray = Array[Object]([SubResource("Resource_seqbr"), SubResource("Resource_wjyvg")])
+metadata/_custom_type_script = "uid://7q5ctde3h7eh"

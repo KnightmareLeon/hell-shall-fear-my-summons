@@ -4,7 +4,7 @@ namespace Godot.Game.HSFMS.Skills;
 public abstract partial class BaseSkill : Node
 {
     [Export]
-    private string _effectsDescription;
+    public string EffectsDescription { get; protected set; }
     [Export]
     private string _flavorText;
     [Export]

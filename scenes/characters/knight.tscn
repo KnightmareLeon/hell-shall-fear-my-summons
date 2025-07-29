@@ -1,12 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=15 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_2r4hc"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
-[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/Damage.cs" id="6_2bw66"]
-[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/Hit.cs" id="7_vw8nl"]
+[ext_resource type="Resource" uid="uid://by21s4u0b0p5n" path="res://data/character/knight/knight_basic_attack_hit.tres" id="6_2bw66"]
+[ext_resource type="Texture2D" uid="uid://cx17g4uawu8h7" path="res://assets/icons/game/basic_attack.png" id="7_vw8nl"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
@@ -61,34 +61,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgwmv"]
 size = Vector2(20, 55)
 
-[sub_resource type="Resource" id="Resource_jg4sg"]
-script = ExtResource("6_2bw66")
-DamageType = 0
-BaseDamage = 10
-Pierce = 0
-IsPercentage = false
-DoesLifesteal = false
-metadata/_custom_type_script = "uid://ban0coxh8k3w"
-
-[sub_resource type="Resource" id="Resource_ysy3t"]
-script = ExtResource("7_vw8nl")
-_damageArray = Array[Object]([SubResource("Resource_jg4sg")])
-metadata/_custom_type_script = "uid://7q5ctde3h7eh"
-
-[sub_resource type="Resource" id="Resource_2bw66"]
-script = ExtResource("6_2bw66")
-DamageType = 0
-BaseDamage = 10
-Pierce = 0
-IsPercentage = false
-DoesLifesteal = false
-metadata/_custom_type_script = "uid://ban0coxh8k3w"
-
-[sub_resource type="Resource" id="Resource_vw8nl"]
-script = ExtResource("7_vw8nl")
-_damageArray = Array[Object]([SubResource("Resource_2bw66")])
-metadata/_custom_type_script = "uid://7q5ctde3h7eh"
-
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_2bw66")
 Stats = SubResource("Resource_tgwmv")
@@ -111,7 +83,9 @@ metadata/_custom_type_script = "uid://chuyml7qsxcxd"
 
 [node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
 script = ExtResource("5_2r4hc")
-HitArray = Array[Object]([SubResource("Resource_ysy3t"), SubResource("Resource_vw8nl")])
+HitArray = [ExtResource("6_2bw66"), ExtResource("6_2bw66")]
 Cooldown = 0
 SkillCost = 1
+EffectsDescription = "This unit's basic attack."
+Icon = ExtResource("7_vw8nl")
 metadata/_custom_type_script = "uid://cgbklyr3b4hey"

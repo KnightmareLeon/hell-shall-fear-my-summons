@@ -6,6 +6,9 @@ public partial class BasicAttack : ActiveSkill
 {
     public override void _Ready()
     {
+        EffectsDescription = "This unit's basic attack.";
+        Cooldown = 0;
+        SkillCost = 1;
         if (Icon == null)
         {
             Icon = ResourceLoader.Load<Texture2D>("res://assets/icons/game/basic_attack.png");
