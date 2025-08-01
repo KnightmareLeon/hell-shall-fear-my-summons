@@ -1509,14 +1509,15 @@ position = Vector2(288, 192)
 [node name="CharacterPlacementArea" parent="EnemyPlacementAreas" instance=ExtResource("6_lpvoh")]
 position = Vector2(512, 192)
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("_characters", "PlayerPlacementAreasNode", "EnemyPlacementAreasNode") instance=ExtResource("2_lpvoh")]
+[node name="BattleController" parent="." node_paths=PackedStringArray("_actionBar", "_characters", "PlayerPlacementAreasNode", "EnemyPlacementAreasNode") instance=ExtResource("2_lpvoh")]
+_actionBar = NodePath("../ActionBar")
 _characters = NodePath("../Characters")
 PlayerPlacementAreasNode = NodePath("../PlayerPlacementAreas")
 EnemyPlacementAreasNode = NodePath("../EnemyPlacementAreas")
 PlayerTotalRows = 2
 PlayerTotalColumns = 2
 
-[node name="ActionBar" parent="GameManager" instance=ExtResource("5_j5jx5")]
+[node name="ActionBar" parent="." instance=ExtResource("5_j5jx5")]
 offset_left = 298.0
 offset_top = 405.0
 offset_right = 593.0

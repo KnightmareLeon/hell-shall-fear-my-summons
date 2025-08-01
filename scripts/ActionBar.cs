@@ -1,5 +1,6 @@
 namespace Godot.Game.HSFMS;
 
+[GlobalClass] [Tool]
 public partial class ActionBar : PanelContainer
 {
     private HBoxContainer _hBoxContainer;
@@ -9,15 +10,15 @@ public partial class ActionBar : PanelContainer
         _hBoxContainer = GetNode<HBoxContainer>("HBoxContainer");
     }
 
-    public void GetActionButtons(Button[] actions)
+    public void GetSkillButtons(Button[] skills)
     {
-        foreach (Button action in actions)
+        foreach (Button skill in skills)
         {
-            _hBoxContainer.AddChild(action);
+            _hBoxContainer.AddChild(skill);
         }
     }
 
-    public void RemoveActionButtons()
+    public void RemoveSkillButtons()
     {
         foreach (Node child in _hBoxContainer.GetChildren())
         {

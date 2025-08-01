@@ -13,7 +13,3 @@ script = ExtResource("1_bc4oh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="AttackButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-text = "Attack"

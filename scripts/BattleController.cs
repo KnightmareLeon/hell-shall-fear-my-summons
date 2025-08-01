@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot.Collections;
+using Godot.Game.HSFMS.Components;
 
 namespace Godot.Game.HSFMS;
 
@@ -17,6 +18,9 @@ public partial class BattleController : Node
     private int _enemyTotalRows = 1;
     private int _enemyTotalColumns = 1;
     [Export]
+    private ActionBar _actionBar;
+    [ExportGroup("Characters")]
+    [Export]
     private Node _characters;
     [Export]
     public Node PlayerPlacementAreasNode
@@ -28,7 +32,7 @@ public partial class BattleController : Node
             UpdateConfigurationWarnings();
         }
     }
-        [Export]
+    [Export]
     public Node EnemyPlacementAreasNode
     {
         get => _enemyPlacementAreasNode;
@@ -154,6 +158,16 @@ public partial class BattleController : Node
         {
             _selectedCharacterPlacementArea = characterPlacementArea;
             _selectedCharacterPlacementArea.Select();
+            _actionBar.RemoveSkillButtons();
+            if (character.HasNode("ActiveSkillsComponent"))
+            {
+                ActiveSkillsComponent activeSkillsComponent = character.GetNode<ActiveSkillsComponent>("ActiveSkillsComponent");
+                _actionBar.GetSkillButtons(activeSkillsComponent.SkillButtons);
+            }
+        }
+        else
+        {
+            _selectedCharacterPlacementArea = null;
         }
     }
 
