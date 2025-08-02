@@ -2,14 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot.Collections;
 using Godot.Game.HSFMS.Components;
+using Godot.Game.HSFMS.Resources;
 
 namespace Godot.Game.HSFMS;
 
-[GlobalClass][Tool]
+[GlobalClass]
+[Tool]
 public partial class BattleController : Node
 {
-    private CharacterPlacementArea[,] _playerCharacterPlacementAreas = new CharacterPlacementArea[1,1];
-    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas = new CharacterPlacementArea[1,1];
+    private CharacterPlacementArea[,] _playerCharacterPlacementAreas = new CharacterPlacementArea[1, 1];
+    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas = new CharacterPlacementArea[1, 1];
     private CharacterPlacementArea _selectedCharacterPlacementArea;
     private Node _playerPlacementAreasNode;
     private Node _enemyPlacementAreasNode;
@@ -171,4 +173,8 @@ public partial class BattleController : Node
         }
     }
 
+    public void OnGettingHit(Hit hit)
+    {
+
+    }
 }
