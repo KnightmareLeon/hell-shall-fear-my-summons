@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_2r4hc"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
 [ext_resource type="Resource" uid="uid://by21s4u0b0p5n" path="res://data/character/knight/knight_basic_attack_hit.tres" id="6_2bw66"]
-[ext_resource type="Texture2D" uid="uid://cx17g4uawu8h7" path="res://assets/icons/game/basic_attack.png" id="7_vw8nl"]
+[ext_resource type="Texture2D" uid="uid://cx17g4uawu8h7" path="res://assets/icons/game/basic_attack1.png" id="7_vw8nl"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
