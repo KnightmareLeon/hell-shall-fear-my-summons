@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
 [ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_poltu"]
-[ext_resource type="Texture2D" uid="uid://cx17g4uawu8h7" path="res://assets/icons/game/basic_attack1.png" id="6_3qx8q"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
 [ext_resource type="Resource" uid="uid://cbwq7is27whuv" path="res://data/character/nightborne/nightborne_basic_attack_hit.tres" id="6_b3w5c"]
+[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="7_wjyvg"]
 [ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/skills/ActiveSkill.cs" id="8_wjyvg"]
 [ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/Damage.cs" id="9_vkkbw"]
 [ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/Hit.cs" id="10_t3ys7"]
@@ -147,7 +147,7 @@ HitArray = Array[Object]([ExtResource("6_b3w5c"), ExtResource("6_b3w5c"), ExtRes
 Cooldown = 0
 SkillCost = 1
 EffectsDescription = "This unit's basic attack."
-Icon = ExtResource("6_3qx8q")
+Icon = ExtResource("7_wjyvg")
 metadata/_custom_type_script = "uid://cgbklyr3b4hey"
 
 [node name="NightStrike" type="Node" parent="ActiveSkillsComponent"]
