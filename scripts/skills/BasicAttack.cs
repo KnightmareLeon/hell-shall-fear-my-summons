@@ -9,6 +9,7 @@ public partial class BasicAttack : ActiveSkill
         EffectsDescription = "This unit's basic attack.";
         Cooldown = 0;
         SkillCost = 1;
+        TargetType = Types.TargetType.SINGLE;
         if (Icon == null)
         {
             Icon = ResourceLoader.Load<Texture2D>("res://assets/icons/game/basic_attack.png");

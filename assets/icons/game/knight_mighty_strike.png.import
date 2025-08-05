@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beyn1pnc88uwq"
-path="res://.godot/imported/mighty_strike.png-8dac8a3dcda56860c5db2bb54c0f4105.ctex"
+path="res://.godot/imported/knight_mighty_strike.png-313714bd30373866d9fd121de576b687.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/game/mighty_strike.png"
-dest_files=["res://.godot/imported/mighty_strike.png-8dac8a3dcda56860c5db2bb54c0f4105.ctex"]
+source_file="res://assets/icons/game/knight_mighty_strike.png"
+dest_files=["res://.godot/imported/knight_mighty_strike.png-313714bd30373866d9fd121de576b687.ctex"]
 
 [params]
 
