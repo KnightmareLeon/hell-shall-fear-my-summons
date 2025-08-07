@@ -1,4 +1,3 @@
-
 using Godot.Collections;
 using Godot.Game.HSFMS.Resources;
 using Godot.Game.HSFMS.Types;
@@ -33,7 +32,7 @@ public partial class ActiveSkill : BaseSkill
         set => _skillCost = Mathf.Clamp(value,0,int.MaxValue);
     }
     [Export]
-    public TargetType TargetType { get; set; }
+    public QuantityType QuantityType { get; set; }
 
     [Export]
     public RangeType RangeType { get; set; }

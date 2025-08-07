@@ -147,6 +147,7 @@ HitArray = Array[Object]([ExtResource("6_b3w5c"), ExtResource("6_b3w5c"), ExtRes
 Cooldown = 0
 SkillCost = 1
 EffectsDescription = "This unit's basic attack."
+TargetType = 1
 Icon = ExtResource("7_wjyvg")
 metadata/_custom_type_script = "uid://cgbklyr3b4hey"
 
@@ -155,5 +156,6 @@ script = ExtResource("8_wjyvg")
 HitArray = Array[Object]([SubResource("Resource_0djuy")])
 Cooldown = 2
 SkillCost = 3
+TargetType = 1
 Icon = ExtResource("11_4jcfk")
 metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
