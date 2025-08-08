@@ -177,4 +177,9 @@ public partial class BattleController : Node
     {
 
     }
+
+    public void OnGettingTarget()
+    {
+        
+    }
 }
