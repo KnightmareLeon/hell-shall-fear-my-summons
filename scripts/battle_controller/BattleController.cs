@@ -19,6 +19,9 @@ public partial class BattleController : Node
     private int _playerTotalColumns = 1;
     private int _enemyTotalRows = 1;
     private int _enemyTotalColumns = 1;
+
+    [Export]
+    private StateMachine _stateMachine;
     [Export]
     private ActionBar _actionBar;
     [ExportGroup("Characters")]

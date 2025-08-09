@@ -1,6 +1,6 @@
 namespace Godot.Game.HSFMS;
 
-[GlobalClass]
+[GlobalClass] [Tool]
 public partial class StateMachine : Node
 {
 

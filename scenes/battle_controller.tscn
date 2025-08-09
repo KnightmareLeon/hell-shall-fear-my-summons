@@ -1,20 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7o2trky3fucx"]
+[gd_scene load_steps=5 format=3 uid="uid://c7o2trky3fucx"]
 
-[ext_resource type="Script" uid="uid://d3y5poxe0d7a6" path="res://scripts/BattleController.cs" id="1_j7oj1"]
+[ext_resource type="Script" uid="uid://d3y5poxe0d7a6" path="res://scripts/battle_controller/BattleController.cs" id="1_j7oj1"]
 [ext_resource type="Script" uid="uid://35uhe5dkikeb" path="res://scripts/state_machine/StateMachine.cs" id="2_ydpkp"]
-[ext_resource type="Script" uid="uid://d02hp476jpg6b" path="res://scripts/state_machine/State.cs" id="3_tg8wc"]
+[ext_resource type="Script" uid="uid://d3dxrd8seox4s" path="res://scripts/battle_controller/states/PlayerSkillSelectionState.cs" id="3_tg8wc"]
+[ext_resource type="Script" uid="uid://dinrxqn18h1lm" path="res://scripts/battle_controller/states/PlayerSkillTargetingState.cs" id="4_7y4jg"]
 
-[node name="BattleController" type="Node"]
+[node name="BattleController" type="Node" node_paths=PackedStringArray("_stateMachine")]
 script = ExtResource("1_j7oj1")
+_stateMachine = NodePath("StateMachine")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
 script = ExtResource("2_ydpkp")
+InitialState = NodePath("PlayerSkillSelectionState")
 metadata/_custom_type_script = "uid://35uhe5dkikeb"
 
 [node name="PlayerSkillSelectionState" type="Node" parent="StateMachine"]
 script = ExtResource("3_tg8wc")
-metadata/_custom_type_script = "uid://d02hp476jpg6b"
+metadata/_custom_type_script = "uid://yv8n6t4efqg4"
 
 [node name="PlayerSkillTargetingState" type="Node" parent="StateMachine"]
-script = ExtResource("3_tg8wc")
-metadata/_custom_type_script = "uid://d02hp476jpg6b"
+script = ExtResource("4_7y4jg")
+metadata/_custom_type_script = "uid://yv8n6t4efqg4"
