@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=23 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
@@ -79,6 +79,20 @@ script = ExtResource("10_ysy3t")
 _damageArray = Array[Object]([SubResource("Resource_vms05")])
 metadata/_custom_type_script = "uid://7q5ctde3h7eh"
 
+[sub_resource type="Resource" id="Resource_t4aln"]
+script = ExtResource("9_t4aln")
+DamageType = 0
+BaseDamage = 30
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_ysy3t"]
+script = ExtResource("10_ysy3t")
+_damageArray = Array[Object]([SubResource("Resource_t4aln")])
+metadata/_custom_type_script = "uid://7q5ctde3h7eh"
+
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_2bw66")
 Stats = SubResource("Resource_tgwmv")
@@ -115,4 +129,12 @@ HitArray = Array[Object]([SubResource("Resource_c5fs1")])
 SkillCost = 2
 TargetType = 1
 Icon = ExtResource("11_6rmq0")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
+
+[node name="SweepingStrike" type="Node" parent="ActiveSkillsComponent"]
+script = ExtResource("8_tgwmv")
+HitArray = Array[Object]([SubResource("Resource_ysy3t")])
+Cooldown = 2
+QuantityType = 2
+TargetType = 1
 metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
