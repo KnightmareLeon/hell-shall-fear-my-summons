@@ -1,4 +1,4 @@
-using System;
+using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS;
 
@@ -17,6 +17,6 @@ public partial class State : Node
 
     public virtual State ProcessInput(InputEvent @event) => null;
 
-    public virtual State ProcessSignal(string signalName, params Variant[] args) => null;
+    public virtual State ProcessSignal(SignalType signalType, params Variant[] args) => null;
 
 }

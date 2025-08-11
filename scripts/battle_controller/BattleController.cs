@@ -158,6 +158,11 @@ public partial class BattleController : Node
 
     private void OnGettingSelectedArea(CharacterBody2D character, CharacterPlacementArea characterPlacementArea)
     {
+        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, characterPlacementArea);
+    }
+
+    public void SetSelectedArea(CharacterBody2D character, CharacterPlacementArea characterPlacementArea)
+    {
         _selectedCharacterPlacementArea?.Unselect();
         if (_selectedCharacterPlacementArea != characterPlacementArea)
         {

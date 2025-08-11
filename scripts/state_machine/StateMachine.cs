@@ -1,3 +1,5 @@
+using Godot.Game.HSFMS.Types;
+
 namespace Godot.Game.HSFMS;
 
 [GlobalClass] [Tool]
@@ -36,5 +38,5 @@ public partial class StateMachine : Node
 
     public void ProcessInput(InputEvent @event) { ChangeState(CurrentState.ProcessInput(@event)); }
 
-    public void ProcessSignal(string signalName, params Variant[] args) { ChangeState(CurrentState.ProcessSignal(signalName, args)); }
+    public void ProcessSignal(SignalType signalType, params Variant[] args) { ChangeState(CurrentState.ProcessSignal(signalType, args)); }
 }
