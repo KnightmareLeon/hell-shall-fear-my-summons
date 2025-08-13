@@ -30,6 +30,16 @@ public partial class CharacterPlacementArea : Area2D
         _animatedSprite2D.Stop();
     }
 
+    public void EnemyTargetHighlight()
+    {
+
+    }
+
+    public void AllyTargetHighlight()
+    {
+        
+    }
+
     public void OnBodyEntered(Node2D body)
     {
         _character = (CharacterBody2D)body;
