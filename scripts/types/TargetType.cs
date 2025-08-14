@@ -4,5 +4,6 @@ public enum TargetType
 {
     ALLY,
     ENEMY,
-    ALL
+    ALL,
+    SELF
 }
