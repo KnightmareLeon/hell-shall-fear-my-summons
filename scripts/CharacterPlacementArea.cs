@@ -6,28 +6,28 @@ public partial class CharacterPlacementArea : Area2D
     [Signal]
     public delegate void SendSelectedAreaEventHandler(CharacterBody2D character, CharacterPlacementArea characterPlacementArea);
 
-    private AnimatedSprite2D _animatedSprite2D;
+    private AnimatedSprite2D _selectionAnimation;
 
     private CharacterBody2D _character;
 
     public (int, int) Index { get; set; }
     public override void _Ready()
     {
-        _animatedSprite2D = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
+        _selectionAnimation = (AnimatedSprite2D)GetNode("SelectionAnimation");
         Connect("input_event", new Callable(this, nameof(OnAreaInputEvent)));
         Connect("body_entered", new Callable(this, nameof(OnBodyEntered)));
     }
 
     public void Select()
     {
-        _animatedSprite2D.Visible = true;
-        _animatedSprite2D.Play("selected");
+        _selectionAnimation.Visible = true;
+        _selectionAnimation.Play("selected");
     }
 
     public void Unselect()
     {
-        _animatedSprite2D.Visible = false;
-        _animatedSprite2D.Stop();
+        _selectionAnimation.Visible = false;
+        _selectionAnimation.Stop();
     }
 
     public void EnemyTargetHighlight()
