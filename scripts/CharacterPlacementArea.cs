@@ -7,6 +7,7 @@ public partial class CharacterPlacementArea : Area2D
     public delegate void SendSelectedAreaEventHandler(CharacterBody2D character, CharacterPlacementArea characterPlacementArea);
 
     private AnimatedSprite2D _selectionAnimation;
+    private AnimatedSprite2D _TargetingAnimation;
 
     private CharacterBody2D _character;
 

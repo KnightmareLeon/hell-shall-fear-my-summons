@@ -45,7 +45,7 @@ size = Vector2(64, 64)
 [node name="CharacterPlacementArea" type="Area2D"]
 script = ExtResource("1_2bbyv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SelectionAnimation" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(-7.15256e-07, -7.15256e-07)
 scale = Vector2(2.75, 2.75)
