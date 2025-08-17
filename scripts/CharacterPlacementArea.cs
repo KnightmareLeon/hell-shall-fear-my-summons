@@ -7,7 +7,7 @@ public partial class CharacterPlacementArea : Area2D
     public delegate void SendSelectedAreaEventHandler(CharacterBody2D character, CharacterPlacementArea characterPlacementArea);
 
     private AnimatedSprite2D _selectionAnimation;
-    private AnimatedSprite2D _TargetingAnimation;
+    private AnimatedSprite2D _targetingAnimation;
 
     private CharacterBody2D _character;
 
@@ -15,6 +15,7 @@ public partial class CharacterPlacementArea : Area2D
     public override void _Ready()
     {
         _selectionAnimation = (AnimatedSprite2D)GetNode("SelectionAnimation");
+        _targetingAnimation = (AnimatedSprite2D)GetNode("TargetingAnimation");
         Connect("input_event", new Callable(this, nameof(OnAreaInputEvent)));
         Connect("body_entered", new Callable(this, nameof(OnBodyEntered)));
     }
@@ -33,12 +34,14 @@ public partial class CharacterPlacementArea : Area2D
 
     public void EnemyTargetHighlight()
     {
-
+        _targetingAnimation.Visible = true;
+        _targetingAnimation.Play("EnemyHighlighted");
     }
 
     public void AllyTargetHighlight()
     {
-        
+        _targetingAnimation.Visible = true;
+        _targetingAnimation.Play("AllyHighlighted");
     }
 
     public void OnBodyEntered(Node2D body)
