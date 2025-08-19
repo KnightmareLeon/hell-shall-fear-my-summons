@@ -10,9 +10,9 @@ namespace Godot.Game.HSFMS;
 [Tool]
 public partial class BattleController : Node
 {
-    private CharacterPlacementArea[,] _playerCharacterPlacementAreas = new CharacterPlacementArea[1, 1];
-    private CharacterPlacementArea[,] _enemyCharacterPlacementAreas = new CharacterPlacementArea[1, 1];
-    private CharacterPlacementArea _selectedCharacterPlacementArea;
+    private UnitPlacementArea[,] _playerUnitPlacementAreas = new UnitPlacementArea[1, 1];
+    private UnitPlacementArea[,] _enemyUnitPlacementAreas = new UnitPlacementArea[1, 1];
+    private UnitPlacementArea _selectedUnitPlacementArea;
     private Node _playerPlacementAreasNode;
     private Node _enemyPlacementAreasNode;
     private int _playerTotalRows = 1;
@@ -54,7 +54,7 @@ public partial class BattleController : Node
         set
         {
             _playerTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
-            _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
+            _playerUnitPlacementAreas = new UnitPlacementArea[_playerTotalRows, _playerTotalColumns];
             UpdateConfigurationWarnings();
         }
     }
@@ -65,7 +65,7 @@ public partial class BattleController : Node
         set
         {
             _playerTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
-            _playerCharacterPlacementAreas = new CharacterPlacementArea[_playerTotalRows, _playerTotalColumns];
+            _playerUnitPlacementAreas = new UnitPlacementArea[_playerTotalRows, _playerTotalColumns];
             UpdateConfigurationWarnings();
         }
     }
@@ -77,7 +77,7 @@ public partial class BattleController : Node
         set
         {
             _enemyTotalRows = Mathf.Clamp(value, 1, int.MaxValue);
-            _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
+            _enemyUnitPlacementAreas = new UnitPlacementArea[_enemyTotalRows, _enemyTotalColumns];
             UpdateConfigurationWarnings();
         }
     }
@@ -88,7 +88,7 @@ public partial class BattleController : Node
         set
         {
             _enemyTotalColumns = Mathf.Clamp(value, 1, int.MaxValue);
-            _enemyCharacterPlacementAreas = new CharacterPlacementArea[_enemyTotalRows, _enemyTotalColumns];
+            _enemyUnitPlacementAreas = new UnitPlacementArea[_enemyTotalRows, _enemyTotalColumns];
             UpdateConfigurationWarnings();
         }
     }
@@ -123,13 +123,13 @@ public partial class BattleController : Node
     private void ConnectingCharacterPlacementsAreas()
     {
         int rowIndex = 0; int colIndex = 0;
-        if (_playerPlacementAreasNode != null && _enemyCharacterPlacementAreas != null)
+        if (_playerPlacementAreasNode != null && _enemyUnitPlacementAreas != null)
         {
             foreach (Node child in _playerPlacementAreasNode.GetChildren())
             {
-                if (child is CharacterPlacementArea childCharArea)
+                if (child is UnitPlacementArea childCharArea)
                 {
-                    _playerCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
+                    _playerUnitPlacementAreas[rowIndex, colIndex] = childCharArea;
                     childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
                     childCharArea.Index = (rowIndex, colIndex++);
                     if (colIndex >= PlayerTotalColumns)
@@ -141,9 +141,9 @@ public partial class BattleController : Node
             rowIndex = 0; colIndex = 0;
             foreach (Node child in _enemyPlacementAreasNode.GetChildren())
             {
-                if (child is CharacterPlacementArea childCharArea)
+                if (child is UnitPlacementArea childCharArea)
                 {
-                    _enemyCharacterPlacementAreas[rowIndex, colIndex] = childCharArea;
+                    _enemyUnitPlacementAreas[rowIndex, colIndex] = childCharArea;
                     childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
                     childCharArea.Index = (rowIndex, colIndex++);
                     if (colIndex >= EnemyTotalColumns)
@@ -156,18 +156,18 @@ public partial class BattleController : Node
 
     }
 
-    private void OnGettingSelectedArea(CharacterBody2D character, CharacterPlacementArea characterPlacementArea)
+    private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
-        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, characterPlacementArea);
+        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);
     }
 
-    public void SetSelectedArea(CharacterBody2D character, CharacterPlacementArea characterPlacementArea)
+    public bool SetSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
-        _selectedCharacterPlacementArea?.Unselect();
-        if (_selectedCharacterPlacementArea != characterPlacementArea)
+        _selectedUnitPlacementArea?.Unselect();
+        if (_selectedUnitPlacementArea != unitPlacementArea)
         {
-            _selectedCharacterPlacementArea = characterPlacementArea;
-            _selectedCharacterPlacementArea.Select();
+            _selectedUnitPlacementArea = unitPlacementArea;
+            _selectedUnitPlacementArea.Select();
             _actionBar.RemoveSkillButtons();
             if (character.HasNode("ActiveSkillsComponent"))
             {
@@ -177,7 +177,15 @@ public partial class BattleController : Node
         }
         else
         {
-            _selectedCharacterPlacementArea = null;
+            _selectedUnitPlacementArea = null;
+        }
+        if (_selectedUnitPlacementArea == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

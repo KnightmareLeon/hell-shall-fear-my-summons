@@ -3,10 +3,10 @@ using Godot.Game.HSFMS.Types;
 namespace Godot.Game.HSFMS;
 
 [Tool]
-public partial class PlayerSkillSelectionState : BattleControllerState
+public partial class PlayerUnitSelectionState : BattleControllerState
 {
     [Export]
-    private PlayerUnitSelectionState _playerUnitSelectionState;
+    private PlayerSkillTargetingState _playerSkillSelectionState;
     public override State ProcessSignal(SignalType signalType, params Variant[] args)
     {
         switch (signalType)
@@ -14,15 +14,14 @@ public partial class PlayerSkillSelectionState : BattleControllerState
             case SignalType.ON_GETTING_SELECTED_AREA:
                 if (BattleController.SetSelectedArea((CharacterBody2D)args[0], (UnitPlacementArea)args[1]))
                 {
-                    return null;
+                    return _playerSkillSelectionState;
                 }
                 else
                 {
-                    return _playerUnitSelectionState;
+                    return null;
                 }
             default:
                 return null;
         }
     }
-
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bvh56jhvq0g7"]
 
-[ext_resource type="Script" uid="uid://bpkrf35v2s20s" path="res://scripts/CharacterPlacementArea.cs" id="1_2bbyv"]
+[ext_resource type="Script" uid="uid://cngfsptwaw7j2" path="res://scripts/UnitPlacementArea.cs" id="1_1rwx2"]
 [ext_resource type="Texture2D" uid="uid://gbg3ywqhnuwe" path="res://assets/ui/07.png" id="2_7yb0p"]
 [ext_resource type="Texture2D" uid="uid://wpb3aammjtx6" path="res://assets/sprites/highlight_areas/AllyTargetHighlight.jpg" id="2_t8rx0"]
 [ext_resource type="Texture2D" uid="uid://dfssgvc3iv2x3" path="res://assets/sprites/highlight_areas/EnemyTargetHighlight.jpg" id="3_abdx8"]
@@ -71,16 +71,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yb0p"]
 size = Vector2(64, 64)
 
-[node name="CharacterPlacementArea" type="Area2D"]
-script = ExtResource("1_2bbyv")
+[node name="UnitPlacementArea" type="Area2D"]
+script = ExtResource("1_1rwx2")
 
 [node name="TargetingAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-5.68434e-14, -5.68434e-14)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_rhhpl")
 animation = &"AllyHighlighted"
 
 [node name="SelectionAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-7.15256e-07, -7.15256e-07)
 scale = Vector2(2.75, 2.75)
 sprite_frames = SubResource("SpriteFrames_u6dig")

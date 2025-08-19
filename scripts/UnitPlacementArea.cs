@@ -1,10 +1,10 @@
 namespace Godot.Game.HSFMS;
 
 [GlobalClass] [Tool]
-public partial class CharacterPlacementArea : Area2D
+public partial class UnitPlacementArea : Area2D
 {
     [Signal]
-    public delegate void SendSelectedAreaEventHandler(CharacterBody2D character, CharacterPlacementArea characterPlacementArea);
+    public delegate void SendSelectedAreaEventHandler(CharacterBody2D character, UnitPlacementArea characterPlacementArea);
 
     private AnimatedSprite2D _selectionAnimation;
     private AnimatedSprite2D _targetingAnimation;
