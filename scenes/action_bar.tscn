@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwr7q2pqc3ep"]
 
-[ext_resource type="Script" uid="uid://boirry4xq8l2f" path="res://scripts/ActionBar.cs" id="1_bc4oh"]
+[ext_resource type="Script" uid="uid://boirry4xq8l2f" path="res://scripts/ui/ActionBar.cs" id="1_bc4oh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_migop"]
 bg_color = Color(0.767815, 0.560566, 1.54018e-06, 1)
