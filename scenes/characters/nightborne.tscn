@@ -1,16 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dou327fqrp3nm"]
+[gd_scene load_steps=17 format=3 uid="uid://dou327fqrp3nm"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
-[ext_resource type="Script" uid="uid://cgbklyr3b4hey" path="res://scripts/skills/BasicAttack.cs" id="5_poltu"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
-[ext_resource type="Resource" uid="uid://cbwq7is27whuv" path="res://data/character/nightborne/nightborne_basic_attack_hit.tres" id="6_b3w5c"]
-[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="7_wjyvg"]
-[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/skills/ActiveSkill.cs" id="8_wjyvg"]
-[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/Damage.cs" id="9_vkkbw"]
-[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/Hit.cs" id="10_t3ys7"]
-[ext_resource type="Texture2D" uid="uid://btrwkqixv7dtt" path="res://assets/icons/game/nightborne_night_strike.png" id="11_4jcfk"]
 
 [sub_resource type="Resource" id="Resource_dq5fi"]
 script = ExtResource("2_es65v")
@@ -99,29 +92,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq5fi"]
 size = Vector2(22, 24)
 
-[sub_resource type="Resource" id="Resource_n5wjo"]
-script = ExtResource("9_vkkbw")
-DamageType = 0
-BaseDamage = 30
-Pierce = 5
-IsPercentage = false
-DoesLifesteal = false
-metadata/_custom_type_script = "uid://ban0coxh8k3w"
-
-[sub_resource type="Resource" id="Resource_vnxsv"]
-script = ExtResource("9_vkkbw")
-DamageType = 1
-BaseDamage = 30
-Pierce = 5
-IsPercentage = false
-DoesLifesteal = false
-metadata/_custom_type_script = "uid://ban0coxh8k3w"
-
-[sub_resource type="Resource" id="Resource_0djuy"]
-script = ExtResource("10_t3ys7")
-_damageArray = Array[Object]([SubResource("Resource_n5wjo"), SubResource("Resource_vnxsv")])
-metadata/_custom_type_script = "uid://7q5ctde3h7eh"
-
 [node name="Nightborne" type="CharacterBody2D"]
 script = ExtResource("1_b3w5c")
 Stats = SubResource("Resource_dq5fi")
@@ -140,22 +110,3 @@ shape = SubResource("RectangleShape2D_dq5fi")
 script = ExtResource("6_517xq")
 MaxSkillPoints = 3
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
-
-[node name="BasicAttack" type="Node" parent="ActiveSkillsComponent"]
-script = ExtResource("5_poltu")
-HitArray = Array[Object]([ExtResource("6_b3w5c"), ExtResource("6_b3w5c"), ExtResource("6_b3w5c")])
-Cooldown = 0
-SkillCost = 1
-EffectsDescription = "This unit's basic attack."
-TargetType = 1
-Icon = ExtResource("7_wjyvg")
-metadata/_custom_type_script = "uid://cgbklyr3b4hey"
-
-[node name="NightStrike" type="Node" parent="ActiveSkillsComponent"]
-script = ExtResource("8_wjyvg")
-HitArray = Array[Object]([SubResource("Resource_0djuy")])
-Cooldown = 2
-SkillCost = 3
-TargetType = 1
-Icon = ExtResource("11_4jcfk")
-metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
