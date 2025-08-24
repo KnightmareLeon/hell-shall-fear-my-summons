@@ -2,11 +2,11 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS;
 
-[Tool]
+[GlobalClass][Tool]
 public partial class PlayerUnitSelectionState : BattleControllerState
 {
     [Export]
-    private PlayerSkillTargetingState _playerSkillSelectionState;
+    private PlayerSkillSelectionState _playerSkillSelectionState;
     public override State ProcessSignal(SignalType signalType, params Variant[] args)
     {
         switch (signalType)

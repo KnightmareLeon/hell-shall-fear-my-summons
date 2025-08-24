@@ -2,7 +2,7 @@ using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS;
 
-[Tool]
+[GlobalClass][Tool]
 public partial class PlayerSkillSelectionState : BattleControllerState
 {
     [Export]

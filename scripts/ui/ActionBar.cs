@@ -10,9 +10,9 @@ public partial class ActionBar : PanelContainer
         _hBoxContainer = GetNode<HBoxContainer>("HBoxContainer");
     }
 
-    public void GetSkillButtons(Button[] skills)
+    public void GetSkillButtons(SkillButton[] skills)
     {
-        foreach (Button skill in skills)
+        foreach (SkillButton skill in skills)
         {
             _hBoxContainer.AddChild(skill);
         }
@@ -22,7 +22,7 @@ public partial class ActionBar : PanelContainer
     {
         foreach (Node child in _hBoxContainer.GetChildren())
         {
-            if (child is Button)
+            if (child is SkillButton)
             {
                 _hBoxContainer.RemoveChild(child);
             }

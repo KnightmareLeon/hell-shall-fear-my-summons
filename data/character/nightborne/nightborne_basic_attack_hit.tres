@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Hit" load_steps=5 format=3 uid="uid://cbwq7is27whuv"]
 
-[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/Damage.cs" id="1_trelm"]
-[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/Hit.cs" id="2_nfx86"]
+[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/skills/Damage.cs" id="1_trelm"]
+[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/skills/Hit.cs" id="2_nfx86"]
 
 [sub_resource type="Resource" id="Resource_seqbr"]
 script = ExtResource("1_trelm")

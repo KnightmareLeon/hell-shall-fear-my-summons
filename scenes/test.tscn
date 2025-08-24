@@ -1512,8 +1512,7 @@ position = Vector2(384, 192)
 [node name="Nightborne" parent="Characters" instance=ExtResource("1_errlg")]
 position = Vector2(384, 288)
 
-[node name="BattleController" parent="." node_paths=PackedStringArray("_actionBar", "_characters", "PlayerPlacementAreasNode", "EnemyPlacementAreasNode") instance=ExtResource("2_lpvoh")]
-_actionBar = NodePath("../ActionBar")
+[node name="BattleController" parent="." node_paths=PackedStringArray("_characters", "PlayerPlacementAreasNode", "EnemyPlacementAreasNode") instance=ExtResource("2_lpvoh")]
 _characters = NodePath("../Characters")
 PlayerPlacementAreasNode = NodePath("../PlayerPlacementAreas")
 EnemyPlacementAreasNode = NodePath("../EnemyPlacementAreas")

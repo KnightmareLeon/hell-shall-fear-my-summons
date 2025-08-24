@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=3 format=3 uid="uid://d00wxcteyvu01"]
+
+[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="1_6wjas"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="2_iag03"]
+
+[resource]
+script = ExtResource("2_iag03")
+HitArray = null
+Cooldown = 0
+SkillCost = 1
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = "This unit's basic attack"
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("1_6wjas")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"

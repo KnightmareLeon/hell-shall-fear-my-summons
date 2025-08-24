@@ -15,8 +15,9 @@ script = ExtResource("2_ydpkp")
 InitialState = NodePath("PlayerUnitSelectionState")
 metadata/_custom_type_script = "uid://35uhe5dkikeb"
 
-[node name="PlayerUnitSelectionState" type="Node" parent="StateMachine"]
+[node name="PlayerUnitSelectionState" type="Node" parent="StateMachine" node_paths=PackedStringArray("_playerSkillSelectionState")]
 script = ExtResource("3_7y4jg")
+_playerSkillSelectionState = NodePath("../PlayerSkillSelectionState")
 metadata/_custom_type_script = "uid://yv8n6t4efqg4"
 
 [node name="PlayerSkillSelectionState" type="Node" parent="StateMachine" node_paths=PackedStringArray("_playerUnitSelectionState")]

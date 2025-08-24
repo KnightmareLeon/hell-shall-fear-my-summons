@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dou327fqrp3nm"]
+[gd_scene load_steps=21 format=3 uid="uid://dou327fqrp3nm"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
+[ext_resource type="Resource" uid="uid://cbwq7is27whuv" path="res://data/character/nightborne/nightborne_basic_attack_hit.tres" id="5_b3w5c"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
+[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="6_es65v"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="7_dq5fi"]
 
 [sub_resource type="Resource" id="Resource_dq5fi"]
 script = ExtResource("2_es65v")
@@ -92,6 +95,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq5fi"]
 size = Vector2(22, 24)
 
+[sub_resource type="Resource" id="Resource_seqbr"]
+script = ExtResource("7_dq5fi")
+HitArray = [ExtResource("5_b3w5c"), ExtResource("5_b3w5c"), ExtResource("5_b3w5c")]
+Cooldown = 0
+SkillCost = 1
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = "This unit's basic attack"
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("6_es65v")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
+
 [node name="Nightborne" type="CharacterBody2D"]
 script = ExtResource("1_b3w5c")
 Stats = SubResource("Resource_dq5fi")
@@ -109,4 +126,5 @@ shape = SubResource("RectangleShape2D_dq5fi")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("6_517xq")
 MaxSkillPoints = 3
+_activeSkills = [SubResource("Resource_seqbr")]
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"

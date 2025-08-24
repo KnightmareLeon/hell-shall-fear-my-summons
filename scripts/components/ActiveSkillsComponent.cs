@@ -23,9 +23,9 @@ public partial class ActiveSkillsComponent : Component
         set => _currentSkillPoints = Mathf.Clamp(value, 1, _maxSkillPoints);
     }
 
-    public Button[] SkillButtons { get; private set; }
-
-
+    [Export]
+    private Array<ActiveSkill> _activeSkills;
+    public SkillButton[] SkillButtons { get; private set; }
     public override void _Ready()
     {
         LoadSkillButtons();
@@ -33,18 +33,16 @@ public partial class ActiveSkillsComponent : Component
 
     public void LoadSkillButtons()
     {
-        SkillButtons = new Button[GetChildCount()];
-        Array<Node> children = GetChildren();
-        for (int i = 0; i < GetChildCount(); i++)
+        SkillButtons = new SkillButton[_activeSkills.Count];
+        int i = 0;
+        foreach (ActiveSkill activeSkill in _activeSkills)
         {
-            if (children[i] is ActiveSkill activeSkill)
+            SkillButton skillButton = new()
             {
-                Button skillButton = new()
-                {
-                    Icon = activeSkill.Icon
-                };
-                SkillButtons[i] = skillButton;
-            }
+                Icon = activeSkill.Icon
+            };
+            SkillButtons[i] = skillButton;
+            i++;
         }
     }
 }
