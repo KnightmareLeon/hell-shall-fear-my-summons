@@ -39,7 +39,8 @@ public partial class ActiveSkillsComponent : Component
         {
             SkillButton skillButton = new()
             {
-                Icon = activeSkill.Icon
+                Icon = activeSkill.Icon,
+                ActiveSkill = activeSkill
             };
             SkillButtons[i] = skillButton;
             i++;
