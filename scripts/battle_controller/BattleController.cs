@@ -156,11 +156,6 @@ public partial class BattleController : Node
 
     }
 
-    private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
-    {
-        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);
-    }
-
     public bool SetSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
         _selectedUnitPlacementArea?.Unselect();
@@ -172,7 +167,13 @@ public partial class BattleController : Node
             if (character.HasNode("ActiveSkillsComponent"))
             {
                 ActiveSkillsComponent activeSkillsComponent = character.GetNode<ActiveSkillsComponent>("ActiveSkillsComponent");
-                _actionBar.GetSkillButtons(activeSkillsComponent.SkillButtons);
+                SkillButton[] skillButtons = activeSkillsComponent.SkillButtons;
+                _actionBar.GetSkillButtons(skillButtons);
+                foreach (SkillButton skillButton in skillButtons)
+                {
+                    skillButton.Connect("pressed", new Callable(this, nameof(OnSkillButtonPressed)));
+                }
+                
             }
         }
         else
@@ -187,6 +188,16 @@ public partial class BattleController : Node
         {
             return true;
         }
+    }
+
+    private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
+    {
+        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);
+    }
+
+    public void OnSkillButtonPressed()
+    {
+        _stateMachine.ProcessSignal(Types.SignalType.ON_SKILL_BUTTON_PRESSED);
     }
 
     public void OnGettingHit(Hit hit)
