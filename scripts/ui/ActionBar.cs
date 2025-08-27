@@ -18,13 +18,14 @@ public partial class ActionBar : PanelContainer
         }
     }
 
-    public void RemoveSkillButtons()
+    public void RemoveSkillButtons(Callable onSkillButtonPressedCallable)
     {
         foreach (Node child in _hBoxContainer.GetChildren())
         {
             if (child is SkillButton)
             {
                 _hBoxContainer.RemoveChild(child);
+                child.Disconnect(Button.SignalName.Pressed, onSkillButtonPressedCallable);
             }
         }
     }

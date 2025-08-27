@@ -19,6 +19,7 @@ public partial class BattleController : Node
     private int _playerTotalColumns = 1;
     private int _enemyTotalRows = 1;
     private int _enemyTotalColumns = 1;
+    private Callable _onSkillButtonPressedCallable;
 
     [Export]
     private StateMachine _stateMachine;
@@ -117,6 +118,7 @@ public partial class BattleController : Node
     }
     public override void _Ready()
     {
+        _onSkillButtonPressedCallable = new Callable(this, nameof(OnSkillButtonPressed));
         ConnectingCharacterPlacementsAreas();
     }
 
@@ -163,7 +165,7 @@ public partial class BattleController : Node
         {
             _selectedUnitPlacementArea = unitPlacementArea;
             _selectedUnitPlacementArea.Select();
-            _actionBar.RemoveSkillButtons();
+            _actionBar.RemoveSkillButtons(_onSkillButtonPressedCallable);
             if (character.HasNode("ActiveSkillsComponent"))
             {
                 ActiveSkillsComponent activeSkillsComponent = character.GetNode<ActiveSkillsComponent>("ActiveSkillsComponent");
@@ -171,9 +173,8 @@ public partial class BattleController : Node
                 _actionBar.GetSkillButtons(skillButtons);
                 foreach (SkillButton skillButton in skillButtons)
                 {
-                    skillButton.Connect("pressed", new Callable(this, nameof(OnSkillButtonPressed)));
+                    skillButton.Connect(Button.SignalName.Pressed, _onSkillButtonPressedCallable);
                 }
-                
             }
         }
         else
