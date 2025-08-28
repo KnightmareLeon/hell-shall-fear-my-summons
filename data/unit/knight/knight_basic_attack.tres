@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=4 format=3 uid="uid://c4n3008yg00cg"]
+
+[ext_resource type="Resource" uid="uid://by21s4u0b0p5n" path="res://data/unit/knight/knight_basic_attack_hit.tres" id="1_ljxs0"]
+[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="2_sghwq"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="3_j3twu"]
+
+[resource]
+script = ExtResource("3_j3twu")
+HitArray = [ExtResource("1_ljxs0"), ExtResource("1_ljxs0")]
+Cooldown = 0
+SkillCost = 1
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = "This unit's basic attack"
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("2_sghwq")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"

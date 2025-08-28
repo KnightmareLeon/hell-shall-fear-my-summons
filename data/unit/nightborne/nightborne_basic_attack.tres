@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=4 format=3 uid="uid://cwe5njcqofuk4"]
+
+[ext_resource type="Resource" uid="uid://cbwq7is27whuv" path="res://data/unit/nightborne/nightborne_basic_attack_hit.tres" id="1_57g4r"]
+[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="2_vs2ky"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="3_l2xtf"]
+
+[resource]
+script = ExtResource("3_l2xtf")
+HitArray = [ExtResource("1_57g4r"), ExtResource("1_57g4r"), ExtResource("1_57g4r")]
+Cooldown = 0
+SkillCost = 1
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = "This unit's basic attack"
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("2_vs2ky")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"

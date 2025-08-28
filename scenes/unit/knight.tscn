@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=13 format=3 uid="uid://bu4l67fucrbcv"]
 
-[ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/characters/Character.cs" id="1_2bw66"]
+[ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/unit/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
-[ext_resource type="Resource" uid="uid://by21s4u0b0p5n" path="res://data/character/knight/knight_basic_attack_hit.tres" id="5_2bw66"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
-[ext_resource type="Texture2D" uid="uid://5gqbedaftjw0" path="res://assets/icons/game/basic_attack.png" id="6_vw8nl"]
-[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="7_tgwmv"]
+[ext_resource type="Resource" uid="uid://c4n3008yg00cg" path="res://data/unit/knight/knight_basic_attack.tres" id="5_woaxm"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
@@ -61,20 +59,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgwmv"]
 size = Vector2(20, 55)
 
-[sub_resource type="Resource" id="Resource_jg4sg"]
-script = ExtResource("7_tgwmv")
-HitArray = [ExtResource("5_2bw66"), ExtResource("5_2bw66")]
-Cooldown = 0
-SkillCost = 1
-QuantityType = 0
-RangeType = 0
-AnimationName = ""
-EffectsDescription = "This unit's basic attack"
-_flavorText = ""
-TargetType = 1
-Icon = ExtResource("6_vw8nl")
-metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
-
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_2bw66")
 Stats = SubResource("Resource_tgwmv")
@@ -93,5 +77,5 @@ shape = SubResource("RectangleShape2D_tgwmv")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")
 MaxSkillPoints = 1
-_activeSkills = Array[Object]([SubResource("Resource_jg4sg")])
+_activeSkills = Array[Object]([ExtResource("5_woaxm")])
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
