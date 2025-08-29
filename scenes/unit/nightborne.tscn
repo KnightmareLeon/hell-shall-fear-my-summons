@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dou327fqrp3nm"]
+[gd_scene load_steps=19 format=3 uid="uid://dou327fqrp3nm"]
 
 [ext_resource type="Texture2D" uid="uid://bdg4w6c75saml" path="res://assets/sprites/nightborne/NightBorne.png" id="1_6jhk5"]
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/unit/Character.cs" id="1_b3w5c"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_es65v"]
 [ext_resource type="Resource" uid="uid://cwe5njcqofuk4" path="res://data/unit/nightborne/nightborne_basic_attack.tres" id="5_4mnao"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="6_517xq"]
+[ext_resource type="Resource" uid="uid://ch2skpjieusnx" path="res://data/unit/nightborne/nightborne_nightstrike.tres" id="6_ehjp6"]
 
 [sub_resource type="Resource" id="Resource_dq5fi"]
 script = ExtResource("2_es65v")
@@ -110,5 +111,5 @@ shape = SubResource("RectangleShape2D_dq5fi")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("6_517xq")
 MaxSkillPoints = 3
-_activeSkills = [ExtResource("5_4mnao")]
+_activeSkills = [ExtResource("5_4mnao"), ExtResource("6_ehjp6")]
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"

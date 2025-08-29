@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=7 format=3 uid="uid://c01csk6onel6j"]
+
+[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/skills/Damage.cs" id="1_2xpj6"]
+[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/skills/Hit.cs" id="2_r5xmq"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="3_i5ohn"]
+[ext_resource type="Texture2D" uid="uid://beyn1pnc88uwq" path="res://assets/icons/game/knight_mighty_strike.png" id="3_r5xmq"]
+
+[sub_resource type="Resource" id="Resource_2et78"]
+script = ExtResource("1_2xpj6")
+DamageType = 0
+BaseDamage = 40
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_xdyf2"]
+script = ExtResource("2_r5xmq")
+_damageArray = Array[Object]([SubResource("Resource_2et78")])
+metadata/_custom_type_script = "uid://7q5ctde3h7eh"
+
+[resource]
+script = ExtResource("3_i5ohn")
+HitArray = Array[Object]([SubResource("Resource_xdyf2")])
+Cooldown = 2
+SkillCost = 3
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = ""
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("3_r5xmq")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"

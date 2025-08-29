@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ActiveSkill" load_steps=9 format=3 uid="uid://ch2skpjieusnx"]
+
+[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/skills/Damage.cs" id="1_7q8ls"]
+[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/skills/Hit.cs" id="2_svp0d"]
+[ext_resource type="Texture2D" uid="uid://btrwkqixv7dtt" path="res://assets/icons/game/nightborne_night_strike.png" id="3_7vs87"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="4_px4rp"]
+
+[sub_resource type="Resource" id="Resource_wonk2"]
+script = ExtResource("1_7q8ls")
+DamageType = 0
+BaseDamage = 20
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_513du"]
+script = ExtResource("1_7q8ls")
+DamageType = 1
+BaseDamage = 10
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_4155x"]
+script = ExtResource("1_7q8ls")
+DamageType = 6
+BaseDamage = 10
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_rjy6r"]
+script = ExtResource("2_svp0d")
+_damageArray = Array[Object]([SubResource("Resource_wonk2"), SubResource("Resource_513du"), SubResource("Resource_4155x")])
+metadata/_custom_type_script = "uid://7q5ctde3h7eh"
+
+[resource]
+script = ExtResource("4_px4rp")
+HitArray = Array[Object]([SubResource("Resource_rjy6r")])
+Cooldown = 3
+SkillCost = 3
+QuantityType = 0
+RangeType = 0
+AnimationName = ""
+EffectsDescription = ""
+_flavorText = ""
+TargetType = 1
+Icon = ExtResource("3_7vs87")
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"

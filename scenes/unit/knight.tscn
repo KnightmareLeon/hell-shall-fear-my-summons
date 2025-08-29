@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=14 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/unit/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
 [ext_resource type="Script" uid="uid://c4ndv7vltqcbl" path="res://scripts/resources/BaseStats.cs" id="2_vw8nl"]
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
 [ext_resource type="Resource" uid="uid://c4n3008yg00cg" path="res://data/unit/knight/knight_basic_attack.tres" id="5_woaxm"]
+[ext_resource type="Resource" uid="uid://c01csk6onel6j" path="res://data/unit/knight/kngiht_mighty_strike.tres" id="6_jymp0"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
@@ -77,5 +78,5 @@ shape = SubResource("RectangleShape2D_tgwmv")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")
 MaxSkillPoints = 1
-_activeSkills = Array[Object]([ExtResource("5_woaxm")])
+_activeSkills = Array[Object]([ExtResource("5_woaxm"), ExtResource("6_jymp0")])
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
