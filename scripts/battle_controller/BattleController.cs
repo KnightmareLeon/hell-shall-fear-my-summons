@@ -176,18 +176,13 @@ public partial class BattleController : Node
                     skillButton.Connect(Button.SignalName.Pressed, _onSkillButtonPressedCallable);
                 }
             }
-        }
-        else
-        {
-            _selectedUnitPlacementArea = null;
-        }
-        if (_selectedUnitPlacementArea == null)
-        {
-            return false;
-        }
-        else
-        {
             return true;
+        }
+        else
+        {
+            _actionBar.RemoveSkillButtons(_onSkillButtonPressedCallable);
+            _selectedUnitPlacementArea = null;
+            return false;
         }
     }
 
