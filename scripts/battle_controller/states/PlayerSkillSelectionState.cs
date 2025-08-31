@@ -7,6 +7,8 @@ public partial class PlayerSkillSelectionState : BattleControllerState
 {
     [Export]
     private PlayerUnitSelectionState _playerUnitSelectionState;
+    [Export]
+    private PlayerSkillTargetingState _playerSkillTargetingState;
     public override State ProcessSignal(SignalType signalType, params Variant[] args)
     {
         switch (signalType)
@@ -20,6 +22,8 @@ public partial class PlayerSkillSelectionState : BattleControllerState
                 {
                     return _playerUnitSelectionState;
                 }
+            case SignalType.ON_SKILL_BUTTON_PRESSED:
+                return _playerSkillTargetingState;
             default:
                 return null;
         }
