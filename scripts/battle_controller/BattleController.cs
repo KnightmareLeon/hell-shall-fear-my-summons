@@ -196,12 +196,7 @@ public partial class BattleController : Node
         _stateMachine.ProcessSignal(Types.SignalType.ON_SKILL_BUTTON_PRESSED);
     }
 
-    public void OnGettingHit(Hit hit)
-    {
-
-    }
-
-    public void OnGettingTarget()
+    public void OnGettingTargetedArea()
     {
         
     }
