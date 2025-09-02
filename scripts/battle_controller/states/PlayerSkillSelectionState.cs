@@ -1,3 +1,4 @@
+using Godot.Game.HSFMS.Skills;
 using Godot.Game.HSFMS.Types;
 
 namespace Godot.Game.HSFMS;
@@ -22,7 +23,8 @@ public partial class PlayerSkillSelectionState : BattleControllerState
                 {
                     return _playerUnitSelectionState;
                 }
-            case SignalType.ON_SKILL_BUTTON_PRESSED:
+            case SignalType.ON_GETTING_SELECTED_SKILL:
+                BattleController.SetSelectedActiveSkill((ActiveSkill) args[0]);
                 return _playerSkillTargetingState;
             default:
                 return null;

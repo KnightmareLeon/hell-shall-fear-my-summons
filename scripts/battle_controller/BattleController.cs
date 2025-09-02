@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
-using Godot.Collections;
 using Godot.Game.HSFMS.Components;
-using Godot.Game.HSFMS.Resources;
+using Godot.Game.HSFMS.Skills;
 
 namespace Godot.Game.HSFMS;
 
@@ -19,8 +17,8 @@ public partial class BattleController : Node
     private int _playerTotalColumns = 1;
     private int _enemyTotalRows = 1;
     private int _enemyTotalColumns = 1;
-    private Callable _onSkillButtonPressedCallable;
-
+    private Callable _onGettingActiveSkillCallable;
+    private ActiveSkill _selectedActiveSkill;
     [Export]
     private StateMachine _stateMachine;
     [Export]
@@ -118,7 +116,7 @@ public partial class BattleController : Node
     }
     public override void _Ready()
     {
-        _onSkillButtonPressedCallable = new Callable(this, nameof(OnSkillButtonPressed));
+        _onGettingActiveSkillCallable = new Callable(this, nameof(OnGettingActiveSkill));
         ConnectingCharacterPlacementsAreas();
     }
 
@@ -165,7 +163,7 @@ public partial class BattleController : Node
         {
             _selectedUnitPlacementArea = unitPlacementArea;
             _selectedUnitPlacementArea.Select();
-            _actionBar.RemoveSkillButtons(_onSkillButtonPressedCallable);
+            _actionBar.RemoveSkillButtons(_onGettingActiveSkillCallable);
             if (character.HasNode("ActiveSkillsComponent"))
             {
                 ActiveSkillsComponent activeSkillsComponent = character.GetNode<ActiveSkillsComponent>("ActiveSkillsComponent");
@@ -173,31 +171,31 @@ public partial class BattleController : Node
                 _actionBar.GetSkillButtons(skillButtons);
                 foreach (SkillButton skillButton in skillButtons)
                 {
-                    skillButton.Connect(Button.SignalName.Pressed, _onSkillButtonPressedCallable);
+                    skillButton.Connect(nameof(skillButton.SendActiveSkill), _onGettingActiveSkillCallable);
                 }
             }
             return true;
         }
         else
         {
-            _actionBar.RemoveSkillButtons(_onSkillButtonPressedCallable);
+            _actionBar.RemoveSkillButtons(_onGettingActiveSkillCallable);
             _selectedUnitPlacementArea = null;
             return false;
         }
     }
 
+    public void SetSelectedActiveSkill(ActiveSkill activeSkill)
+    {
+        GD.Print("Active Skill selected");
+        _selectedActiveSkill = activeSkill;
+    }
     private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
         _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);
     }
 
-    public void OnSkillButtonPressed()
+    private void OnGettingActiveSkill(ActiveSkill activeSkill)
     {
-        _stateMachine.ProcessSignal(Types.SignalType.ON_SKILL_BUTTON_PRESSED);
-    }
-
-    public void OnGettingTargetedArea()
-    {
-        
+        _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_SKILL, activeSkill);
     }
 }
