@@ -17,6 +17,7 @@ public partial class BattleController : Node
     private int _playerTotalColumns = 1;
     private int _enemyTotalRows = 1;
     private int _enemyTotalColumns = 1;
+    private Callable _onGettingSelectedAreaCallable;
     private Callable _onGettingActiveSkillCallable;
     private ActiveSkill _selectedActiveSkill;
     [Export]
@@ -116,6 +117,7 @@ public partial class BattleController : Node
     }
     public override void _Ready()
     {
+        _onGettingSelectedAreaCallable = new Callable(this, nameof(OnGettingSelectedArea));
         _onGettingActiveSkillCallable = new Callable(this, nameof(OnGettingActiveSkill));
         ConnectingCharacterPlacementsAreas();
     }
@@ -130,7 +132,7 @@ public partial class BattleController : Node
                 if (child is UnitPlacementArea childCharArea)
                 {
                     _playerUnitPlacementAreas[rowIndex, colIndex] = childCharArea;
-                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), _onGettingSelectedAreaCallable);
                     childCharArea.Index = (rowIndex, colIndex++);
                     if (colIndex >= PlayerTotalColumns)
                     {
@@ -144,7 +146,7 @@ public partial class BattleController : Node
                 if (child is UnitPlacementArea childCharArea)
                 {
                     _enemyUnitPlacementAreas[rowIndex, colIndex] = childCharArea;
-                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), new Callable(this, nameof(OnGettingSelectedArea)));
+                    childCharArea.Connect(nameof(childCharArea.SendSelectedArea), _onGettingSelectedAreaCallable);
                     childCharArea.Index = (rowIndex, colIndex++);
                     if (colIndex >= EnemyTotalColumns)
                     {
@@ -186,8 +188,21 @@ public partial class BattleController : Node
 
     public void SetSelectedActiveSkill(ActiveSkill activeSkill)
     {
-        GD.Print("Active Skill selected");
         _selectedActiveSkill = activeSkill;
+    }
+
+    public void HighlightEnemyTargets(bool isPlayer)
+    {
+        if (isPlayer)
+        {
+            for (int i = 0; i < _enemyTotalRows; i++)
+            {
+                for (int j = 0; j < _enemyTotalColumns; j++)
+                {
+                    _enemyUnitPlacementAreas[i, j].EnemyTargetHighlight();
+                }
+            }
+        }
     }
     private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
