@@ -44,6 +44,10 @@ public partial class UnitPlacementArea : Area2D
         _targetingAnimation.Play("AllyHighlighted");
     }
 
+    public bool HasCharacter()
+    {
+        return _character != null;
+    }
     public void OnBodyEntered(Node2D body)
     {
         _character = (CharacterBody2D)body;

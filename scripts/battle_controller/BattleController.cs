@@ -193,16 +193,31 @@ public partial class BattleController : Node
 
     public void HighlightEnemyTargets(bool isPlayer)
     {
-        if (isPlayer)
+        if (!isPlayer) { return; }
+        switch (_selectedActiveSkill.RangeType)
         {
-            for (int i = 0; i < _enemyTotalRows; i++)
-            {
-                for (int j = 0; j < _enemyTotalColumns; j++)
+            case Types.RangeType.MELEE:
+                int columnToBeHighlighted = 0;
+                for (int i = 0; i < _enemyTotalColumns; i++)
                 {
-                    _enemyUnitPlacementAreas[i, j].EnemyTargetHighlight();
+                    for (int j = 0; j < _enemyTotalRows; j++)
+                    {
+                        if (_enemyUnitPlacementAreas[j, i].HasCharacter())
+                        {
+                            columnToBeHighlighted = i;
+                            break;
+                        }
+                    }
                 }
-            }
+                for (int j = 0; j < _enemyTotalRows; j++)
+                {
+                    _enemyUnitPlacementAreas[j, columnToBeHighlighted].EnemyTargetHighlight();
+                }
+                break;
+            default:
+                break;
         }
+        
     }
     private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
