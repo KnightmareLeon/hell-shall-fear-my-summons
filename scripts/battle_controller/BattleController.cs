@@ -197,6 +197,7 @@ public partial class BattleController : Node
         switch (_selectedActiveSkill.RangeType)
         {
             case Types.RangeType.MELEE:
+            {
                 int columnToBeHighlighted = 0;
                 for (int i = 0; i < _enemyTotalColumns; i++)
                 {
@@ -214,6 +215,18 @@ public partial class BattleController : Node
                     _enemyUnitPlacementAreas[j, columnToBeHighlighted].EnemyTargetHighlight();
                 }
                 break;
+            }
+            case Types.RangeType.RANGED:
+            {
+                for (int i = 0; i < _enemyTotalColumns; i++)
+                {
+                    for (int j = 0; j < _enemyTotalRows; j++)
+                    {
+                        _enemyUnitPlacementAreas[j, i].EnemyTargetHighlight();
+                    }
+                }
+                break;
+            }
             default:
                 break;
         }
