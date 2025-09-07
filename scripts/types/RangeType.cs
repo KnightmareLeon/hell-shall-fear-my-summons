@@ -5,5 +5,6 @@ public enum RangeType
     MELEE,
     RANGED,
     BEHIND,
-    BEHIND_AND_SIDES
+    BEHIND_AND_SIDES,
+    SELF
 }

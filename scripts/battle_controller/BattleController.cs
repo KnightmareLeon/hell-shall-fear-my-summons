@@ -232,6 +232,26 @@ public partial class BattleController : Node
         }
         
     }
+
+    public void HighlightAllyTargets(bool isPlayer)
+    {
+        if (!isPlayer) { return; }
+        switch (_selectedActiveSkill.RangeType)
+        {
+            case Types.RangeType.SELF:
+            {
+                break;
+            }
+            case Types.RangeType.BEHIND:
+            {
+                break;
+            }
+            case Types.RangeType.BEHIND_AND_SIDES:
+                break;
+            default:
+                break;
+        }
+    }
     private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
         _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);
