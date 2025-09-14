@@ -1542,3 +1542,11 @@ offset_left = 298.0
 offset_top = 405.0
 offset_right = 593.0
 offset_bottom = 436.0
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 416.0
+offset_top = 448.0
+offset_right = 476.0
+offset_bottom = 479.0
+text = "Cancel"

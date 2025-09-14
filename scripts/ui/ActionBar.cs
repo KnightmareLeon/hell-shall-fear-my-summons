@@ -5,6 +5,9 @@ public partial class ActionBar : PanelContainer
 {
     private HBoxContainer _hBoxContainer;
 
+    [Export]
+    private Button _cancelButton;
+
     public override void _Ready()
     {
         _hBoxContainer = GetNode<HBoxContainer>("HBoxContainer");

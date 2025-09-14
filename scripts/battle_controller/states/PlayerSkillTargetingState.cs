@@ -6,6 +6,8 @@ namespace Godot.Game.HSFMS;
 [GlobalClass][Tool]
 public partial class PlayerSkillTargetingState : BattleControllerState
 {
+    [Export]
+    private PlayerSkillSelectionState _playerSkillSelectionState;
     public override void Enter()
     {
         base.Enter();
@@ -21,6 +23,8 @@ public partial class PlayerSkillTargetingState : BattleControllerState
             case SignalType.ON_GETTING_SELECTED_SKILL:
                 BattleController.SetSelectedActiveSkill((ActiveSkill)args[0]);
                 return null;
+            case SignalType.ON_CANCEL_BUTTON_PRESSED:
+                return _playerSkillSelectionState;
             default:
                 return null;
         }

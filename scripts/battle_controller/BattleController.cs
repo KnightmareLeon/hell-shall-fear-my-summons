@@ -261,4 +261,9 @@ public partial class BattleController : Node
     {
         _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_SKILL, activeSkill);
     }
+
+    public void OnCancelButtonPressed()
+    {
+        _stateMachine.ProcessSignal(Types.SignalType.ON_CANCEL_BUTTON_PRESSED);
+    }
 }
