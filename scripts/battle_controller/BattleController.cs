@@ -191,51 +191,53 @@ public partial class BattleController : Node
         _selectedActiveSkill = activeSkill;
     }
 
-    public void HighlightEnemyTargets(bool isPlayer)
+    private void HighlightEnemyTargets(bool isPlayer)
     {
         if (!isPlayer) { return; }
+        _actionBar.ShowCancelButton();
         switch (_selectedActiveSkill.RangeType)
         {
             case Types.RangeType.MELEE:
-            {
-                int columnToBeHighlighted = 0;
-                for (int i = 0; i < _enemyTotalColumns; i++)
                 {
-                    for (int j = 0; j < _enemyTotalRows; j++)
+                    int columnToBeHighlighted = 0;
+                    for (int i = 0; i < _enemyTotalColumns; i++)
                     {
-                        if (_enemyUnitPlacementAreas[j, i].HasCharacter())
+                        for (int j = 0; j < _enemyTotalRows; j++)
                         {
-                            columnToBeHighlighted = i;
-                            break;
+                            if (_enemyUnitPlacementAreas[j, i].HasCharacter())
+                            {
+                                columnToBeHighlighted = i;
+                                break;
+                            }
                         }
                     }
-                }
-                for (int j = 0; j < _enemyTotalRows; j++)
-                {
-                    _enemyUnitPlacementAreas[j, columnToBeHighlighted].EnemyTargetHighlight();
-                }
-                break;
-            }
-            case Types.RangeType.RANGED:
-            {
-                for (int i = 0; i < _enemyTotalColumns; i++)
-                {
                     for (int j = 0; j < _enemyTotalRows; j++)
                     {
-                        _enemyUnitPlacementAreas[j, i].EnemyTargetHighlight();
+                        _enemyUnitPlacementAreas[j, columnToBeHighlighted].EnemyTargetHighlight();
                     }
+                    break;
                 }
-                break;
-            }
+            case Types.RangeType.RANGED:
+                {
+                    for (int i = 0; i < _enemyTotalColumns; i++)
+                    {
+                        for (int j = 0; j < _enemyTotalRows; j++)
+                        {
+                            _enemyUnitPlacementAreas[j, i].EnemyTargetHighlight();
+                        }
+                    }
+                    break;
+                }
             default:
                 break;
         }
-        
+
     }
 
-    public void HighlightAllyTargets(bool isPlayer)
+    private void HighlightAllyTargets(bool isPlayer)
     {
         if (!isPlayer) { return; }
+        _actionBar.ShowCancelButton();
         switch (_selectedActiveSkill.RangeType)
         {
             case Types.RangeType.SELF:
@@ -252,6 +254,26 @@ public partial class BattleController : Node
                 break;
         }
     }
+
+    public void HighlighTargets(bool isPlayer)
+    {
+        switch (_selectedActiveSkill.TargetType)
+        {
+            case Types.TargetType.ENEMY:
+            {
+                HighlightEnemyTargets(isPlayer);
+                break;
+            }
+            case Types.TargetType.ALLY:
+            {
+                HighlightAllyTargets(isPlayer);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
     private void OnGettingSelectedArea(CharacterBody2D character, UnitPlacementArea unitPlacementArea)
     {
         _stateMachine.ProcessSignal(Types.SignalType.ON_GETTING_SELECTED_AREA, character, unitPlacementArea);

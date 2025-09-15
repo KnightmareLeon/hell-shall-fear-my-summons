@@ -1,6 +1,7 @@
 namespace Godot.Game.HSFMS;
 
-[GlobalClass] [Tool]
+[GlobalClass]
+[Tool]
 public partial class ActionBar : PanelContainer
 {
     private HBoxContainer _hBoxContainer;
@@ -31,6 +32,11 @@ public partial class ActionBar : PanelContainer
                 skillButton.Disconnect(nameof(skillButton.SendActiveSkill), onGettingActiveSkillCallable);
             }
         }
+    }
+
+    public void ShowCancelButton()
+    {
+        _cancelButton.Visible = true;
     }
 
 }

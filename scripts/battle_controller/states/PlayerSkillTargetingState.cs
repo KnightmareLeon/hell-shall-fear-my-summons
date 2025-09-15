@@ -11,7 +11,7 @@ public partial class PlayerSkillTargetingState : BattleControllerState
     public override void Enter()
     {
         base.Enter();
-        BattleController.HighlightEnemyTargets(isPlayer: true);
+        BattleController.HighlighTargets(isPlayer: true);
     }
 
     public override State ProcessSignal(SignalType signalType, params Variant[] args)
@@ -22,6 +22,7 @@ public partial class PlayerSkillTargetingState : BattleControllerState
                 return null;
             case SignalType.ON_GETTING_SELECTED_SKILL:
                 BattleController.SetSelectedActiveSkill((ActiveSkill)args[0]);
+                BattleController.HighlighTargets(isPlayer: true);
                 return null;
             case SignalType.ON_CANCEL_BUTTON_PRESSED:
                 return _playerSkillSelectionState;
