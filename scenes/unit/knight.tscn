@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu4l67fucrbcv"]
+[gd_scene load_steps=21 format=3 uid="uid://bu4l67fucrbcv"]
 
 [ext_resource type="Script" uid="uid://b3v6ox62j55a6" path="res://scripts/unit/Character.cs" id="1_2bw66"]
 [ext_resource type="Texture2D" uid="uid://cvnrgc4a65nim" path="res://assets/sprites/knight/Idle.png" id="1_dp28g"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://chuyml7qsxcxd" path="res://scripts/components/ActiveSkillsComponent.cs" id="5_swm0g"]
 [ext_resource type="Resource" uid="uid://c4n3008yg00cg" path="res://data/unit/knight/knight_basic_attack.tres" id="5_woaxm"]
 [ext_resource type="Resource" uid="uid://c01csk6onel6j" path="res://data/unit/knight/kngiht_mighty_strike.tres" id="6_jymp0"]
+[ext_resource type="Script" uid="uid://ban0coxh8k3w" path="res://scripts/resources/skills/Damage.cs" id="7_16g1s"]
+[ext_resource type="Script" uid="uid://7q5ctde3h7eh" path="res://scripts/resources/skills/Hit.cs" id="8_4wp6i"]
+[ext_resource type="Script" uid="uid://b6cg6qag1fxsh" path="res://scripts/resources/skills/ActiveSkill.cs" id="9_3be77"]
 
 [sub_resource type="Resource" id="Resource_tgwmv"]
 script = ExtResource("2_vw8nl")
@@ -60,6 +63,42 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgwmv"]
 size = Vector2(20, 55)
 
+[sub_resource type="Resource" id="Resource_2xm66"]
+script = ExtResource("7_16g1s")
+DamageType = 0
+BaseDamage = 10
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_dihct"]
+script = ExtResource("7_16g1s")
+DamageType = 1
+BaseDamage = 10
+Pierce = 0
+IsPercentage = false
+DoesLifesteal = false
+metadata/_custom_type_script = "uid://ban0coxh8k3w"
+
+[sub_resource type="Resource" id="Resource_rnomi"]
+script = ExtResource("8_4wp6i")
+_damageArray = Array[Object]([SubResource("Resource_2xm66"), SubResource("Resource_dihct")])
+metadata/_custom_type_script = "uid://7q5ctde3h7eh"
+
+[sub_resource type="Resource" id="Resource_nfeba"]
+script = ExtResource("9_3be77")
+HitArray = Array[Object]([SubResource("Resource_rnomi")])
+Cooldown = 1
+SkillCost = 0
+QuantityType = 0
+RangeType = 1
+AnimationName = ""
+EffectsDescription = ""
+_flavorText = ""
+TargetType = 1
+metadata/_custom_type_script = "uid://b6cg6qag1fxsh"
+
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_2bw66")
 Stats = SubResource("Resource_tgwmv")
@@ -78,5 +117,5 @@ shape = SubResource("RectangleShape2D_tgwmv")
 [node name="ActiveSkillsComponent" type="Node" parent="."]
 script = ExtResource("5_swm0g")
 MaxSkillPoints = 1
-_activeSkills = Array[Object]([ExtResource("5_woaxm"), ExtResource("6_jymp0")])
+_activeSkills = Array[Object]([ExtResource("5_woaxm"), ExtResource("6_jymp0"), SubResource("Resource_nfeba")])
 metadata/_custom_type_script = "uid://chuyml7qsxcxd"
